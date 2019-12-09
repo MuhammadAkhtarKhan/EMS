@@ -1,0 +1,21 @@
+<div class="container wrapper wrapper2">
+    <div class="row">
+
+        <!-- Form -->
+        <div class="col-md-12">
+            <h3>Add Issue</h3>
+            <form [formGroup]="bpForm" (ngSubmit)="submitForm()" novalidate>
+                <div class="form-group">
+                    <label>Blood Group</label>
+                    <input type="text" formControlName="bpname" class="form-control" maxlength="3">
+                </div>
+                <div class="form-group">
+                    <label>Blood Group Status</label>
+                    <input class="form-control" formControlName="status"  maxlength="5">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+    </div>
+</div>
