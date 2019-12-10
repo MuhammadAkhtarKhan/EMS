@@ -11,7 +11,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class BpService {
 
   // Base url
-  baseurl = 'http://localhost:53084/api/bp';
+  baseurl = 'http://localhost:53084/api';
 
   constructor(private http: HttpClient) { }
 

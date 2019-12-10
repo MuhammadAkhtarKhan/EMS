@@ -27,7 +27,7 @@ export class BpComponent implements OnInit {
     });
   }
   submitForm() {
-    this.bpService.CreateBp.(this.bpForm.value).subscribe(res => {
+    this.bpService.CreateBp(this.bpForm.value).subscribe(res => {
       console.log('Blood Group added!')
       this.ngZone.run(() => this.router.navigateByUrl('/issues-list'));
     });
