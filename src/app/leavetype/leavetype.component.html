@@ -1,0 +1,33 @@
+<div class="container wrapper wrapper2">
+    <div class="row">
+
+        <!-- Form -->
+        <div class="col-md-6">
+            <h3>Add Leave Type</h3>
+            <form [formGroup]="leavetypeForm" (ngSubmit)="submitForm()" novalidate>
+                <div class="form-group">
+                    <label>Leave Type</label>
+                    <input type="text" formControlName="LDESC" class="form-control" maxlength="50">
+                </div>
+                <div class="form-group">
+                    <label>Leave Abbreviation</label>
+                    <input type="text" formControlName="LABRV" class="form-control" maxlength="5">
+                </div>
+                <div class="form-group">
+                    <label>Leave Weightage</label>
+                    <input type="text" formControlName="LWEIGHT" class="form-control" maxlength="6">
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <input class="form-control" formControlName="STATUS"  maxlength="1">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        Angular Generated Form Model : {{leavetypeForm.value | json}}
+        <div class="col-md-6">
+            <app-leavetype-list></app-leavetype-list>
+        </div>
+    </div>
+</div>
+

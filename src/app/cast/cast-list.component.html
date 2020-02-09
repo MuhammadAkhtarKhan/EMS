@@ -1,0 +1,36 @@
+<div class="container wrapper">
+    <div class="row">
+
+        <!-- Cast table -->
+        <div class="col-md-12">
+            <div class="inner">
+                <h3>Casts </h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Cast Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cst of CastsList">
+                            <th scope="row">{{cst.TRNNO}}</th>
+                            <td>{{cst.CDESC}}</td>
+                            <td>{{cst.STATUS}}</td>
+                            <td>
+                                <button mat-button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/cast/', cst.TRNNO]">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteCast(cst)">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+</div>

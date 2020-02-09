@@ -1,0 +1,19 @@
+/* mat-toolbar{
+    background-color: rgb(110, 110, 238)
+} */
+.navbar{
+    justify-content: space-between;
+}
+span{
+    padding-right: 1rem;
+}
+mat-sidenav-container{
+    height: 100%;
+}
+mat-sidenav, mat-sidenav-content{
+padding: 16px;
+}
+mat-sidenav{
+    background-color: rgb(228, 196, 196);
+    width: 200px;
+}

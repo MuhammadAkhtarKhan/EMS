@@ -1,0 +1,36 @@
+<div class="container wrapper">
+    <div class="row">
+
+        <!-- Bp table -->
+        <div class="col-md-12">
+            <div class="inner">
+                <h3>Blood Groups</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Blood Group Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let bps of BpsList">
+                            <th scope="row">{{bps.TRNNO}}</th>
+                            <td>{{bps.BPNAME}}</td>
+                            <td>{{bps.STATUS}}</td>
+                            <td>
+                                <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/bp/', bps.TRNNO]">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteBp(bps)">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+</div>

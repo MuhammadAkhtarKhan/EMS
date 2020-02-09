@@ -1,0 +1,36 @@
+<div class="container wrapper">
+    <div class="row">
+
+        <!-- FeeType table -->
+        <div class="col-md-12">
+            <div class="inner">
+                <h3>Fee Types</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Fee Type</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let feetype of FeeTypesList">
+                            <th scope="row">{{feetype.TRNNO}}</th>
+                            <td>{{feetype.FTYPE}}</td>
+                            <td>{{feetype.STATUS}}</td>
+                            <td>
+                                <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/feetype/', feetype.TRNNO]">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteFeeType(feetype)">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container wrapper">
+    <div class="row">
+
+        <!-- Classes table -->
+        <div class="col-md-12">
+            <div class="inner">
+                <h3>Classes</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Class Name</th>
+                            <th scope="col">Class Abbreviatio</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cls of ClassesList">
+                            <th scope="row">{{cls.TRNNO}}</th>
+                            <td>{{cls.CNAME}}</td>
+                            <td>{{cls.CABR}}</td>
+                            <td>
+                                <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/classes/', cls.TRNNO]">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteClass(cls)">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+</div>

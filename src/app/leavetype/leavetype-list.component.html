@@ -1,0 +1,40 @@
+<div class="container wrapper">
+    <div class="row">
+
+        <!-- LeaveType table -->
+        <div class="col-md-12">
+            <div class="inner">
+                <h3>Leave Types</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Leave Type</th>
+                            <th scope="col">Leave Abbreviation</th>
+                            <th scope="col">Leave Weightage</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let leavetype of LeaveTypesList">
+                            <th scope="row">{{leavetype.TRNNO}}</th>
+                            <td>{{leavetype.LDESC}}</td>
+                            <td>{{leavetype.LABRV}}</td>
+                            <td>{{leavetype.LWEIGHT}}</td>
+                            <td>{{leavetype.STATUS}}</td>
+                            <td>
+                                <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/leavetype/', leavetype.TRNNO]">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteLeaveType(leavetype)">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+</div>

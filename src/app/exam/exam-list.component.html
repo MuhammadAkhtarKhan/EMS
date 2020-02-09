@@ -1,0 +1,36 @@
+<div class="container wrapper">
+    <div class="row">
+
+        <!-- Exam table -->
+        <div class="col-md-12">
+            <div class="inner">
+                <h3>Blood Groups</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Exam Type</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let exm of ExamsList">
+                            <th scope="row">{{exm.TRNNO}}</th>
+                            <td>{{exm.ETYPE}}</td>
+                            <td>{{exm.STATUS}}</td>
+                            <td>
+                                <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/bp/', exm.TRNNO]">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteExam(exm)">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+</div>

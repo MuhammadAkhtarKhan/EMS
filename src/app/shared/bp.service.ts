@@ -24,7 +24,7 @@ export class BpService {
 
   // POST
   CreateBp(data): Observable<Bp> {
-    return this.http.post<Bp>(this.baseurl + '/bp/', JSON.stringify(data), this.httpOptions)
+    return this.http.post<Bp>(this.baseurl + '/bp', JSON.stringify(data), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -42,7 +42,7 @@ export class BpService {
 
   // GET
   GetBps(): Observable<Bp> {
-    return this.http.get<Bp>(this.baseurl + '/bp/')
+    return this.http.get<Bp>(this.baseurl + '/bp')
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -59,13 +59,16 @@ export class BpService {
   }
 
   // DELETE
-  DeleteBp(id){
+  deleteBp(id) {
     return this.http.delete<Bp>(this.baseurl + '/bp/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
     );
   }
+  // deleteBp(id: number): Observable<any> {
+  //   return this.http.delete(`${this.baseurl}/${id}`, { responseType: 'text' });
+  // }
 
   // Error handling
   errorHandl(error) {

@@ -1,0 +1,25 @@
+<div class="container wrapper wrapper2">
+    <div class="row">
+
+        <!-- Form -->
+        <div class="col-md-12">
+            <h3>Update Blood Group</h3>
+            <form [formGroup]="updateBpForm" (ngSubmit)="submitForm()" novalidate>
+                <div class="form-group">
+                    <label>Blood Group</label>
+                    <input type="text" formControlName="BPNAME" class="form-control" maxlength="3">
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <input type="text" class="form-control" formControlName="STATUS"  maxlength="1">
+                </div>
+                <div class="form-group">
+                    <label>TRNNO</label>
+                    <input type="text" formControlName="TRNNO" hidden  class="form-control">
+                </div>                
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+
+    </div>
+</div>

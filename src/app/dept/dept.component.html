@@ -1,0 +1,26 @@
+
+<div class="container wrapper wrapper2">
+    <div class="row">
+
+        <!--Dept Form -->
+        <div class="col-md-6">
+            <h3>Add Department</h3>
+            <form [formGroup]="deptForm" (ngSubmit)="submitForm()" novalidate>
+                <div class="form-group">
+                    <label>Dept Abbreviation</label>
+                    <input type="text" formControlName="abr" class="form-control" maxlength="5">
+                </div>
+                <div class="form-group">
+                    <label>Department Name</label>
+                    <input class="form-control" formControlName="descrip"  maxlength="50">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <app-dept-list></app-dept-list>
+        </div>
+    </div>
+</div>
+Angular Generated Form Model : {{deptForm.value | json}}
+

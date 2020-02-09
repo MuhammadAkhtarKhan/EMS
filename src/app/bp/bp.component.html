@@ -2,8 +2,8 @@
     <div class="row">
 
         <!-- Form -->
-        <div class="col-md-12">
-            <h3>Add Issue</h3>
+        <div class="col-md-6">
+            <h3>Add Blood Groups</h3>
             <form [formGroup]="bpForm" (ngSubmit)="submitForm()" novalidate>
                 <div class="form-group">
                     <label>Blood Group</label>
@@ -11,11 +11,15 @@
                 </div>
                 <div class="form-group">
                     <label>Blood Group Status</label>
-                    <input class="form-control" formControlName="status"  maxlength="6">
+                    <input class="form-control" formControlName="status"  maxlength="1">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
-
+        Angular Generated Form Model : {{bpForm.value | json}}
+        <div class="col-md-6">
+            <app-bp-list></app-bp-list>
+        </div>
     </div>
 </div>
+
