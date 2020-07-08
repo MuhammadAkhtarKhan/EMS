@@ -1,0 +1,112 @@
+<mat-sidenav-container  class="sidenav-container">
+  <mat-sidenav  #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async ) === false"
+      [opened]=isShowing >
+    <mat-toolbar>Menu</mat-toolbar>    
+    <mat-accordion>      
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h4>Definitions</h4>
+          </mat-panel-title>          
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+      <a mat-list-item [routerLink]="['/bp']">Blood Group</a>
+      <a mat-list-item [routerLink]="['/cast/']">Cast</a>
+      <a mat-list-item [routerLink]="['/classes/']">Classes</a>
+      <a mat-list-item [routerLink]="['/dept/']">Department</a>
+      <a mat-list-item [routerLink]="['/exam/']">Exam</a>
+      <a mat-list-item [routerLink]="['/edu/']">Education</a>
+      <a mat-list-item [routerLink]="['/feetype/']">Fee Type</a>
+      <a mat-list-item [routerLink]="['/leavetype/']">Leave Type</a>
+      <a mat-list-item [routerLink]="['/subject/']">Subject</a>
+      <a mat-list-item [routerLink]="['/marktotal/']">Total Marks</a>
+      <a mat-list-item [routerLink]="['/group/']">Groups</a>
+      <a mat-list-item [routerLink]="['/classfee/']">Classes Fee</a>
+      <a mat-list-item [routerLink]="['/spfee/']">Special Fee</a>
+      <a mat-list-item [routerLink]="['/sections/']">Sections</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+        <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h4>Forms</h4>
+          </mat-panel-title>          
+        </mat-expansion-panel-header> 
+        <mat-nav-list>
+      <a mat-list-item [routerLink]="['/emp/']">Student Information</a>
+      <a mat-list-item [routerLink]="['/teachinfo/']">Teacher Information</a>
+      <a mat-list-item [routerLink]="['/feecollect/']">Fee Collection</a>
+      <a mat-list-item [routerLink]="['/groupchange/']">Group Change</a>
+      <a mat-list-item [routerLink]="['/promotion/']">Class Promotion</a>
+      <a mat-list-item [routerLink]="['/lschool/']">Left School</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-accordion>    
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon id="idMenu" aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>        
+     
+        <span>EMS</span>
+        <span class="example-spacer"></span>
+        <div *ngIf="!user">         
+          <span><a [routerLink]="['/login']"(click)="login()" >Login</a></span>
+        </div>
+        <div *ngIf="user">
+          <span><a>Welcome {{user.userName}}</a></span>&nbsp;&nbsp;
+          <span><button  class="btn btn-primary" (click)="logout()">Log Out</button></span>
+        </div>
+     
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+<!-- <mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Personal data
+      </mat-panel-title>
+      <mat-panel-description>
+        Type your name and age
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <mat-label>First name</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Age</mat-label>
+      <input matInput type="number" min="1">
+    </mat-form-field>
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Self aware panel
+      </mat-panel-title>
+      <mat-panel-description>
+        Currently I am {{panelOpenState ? 'open' : 'closed'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>I'm visible because I am open</p>
+  </mat-expansion-panel>
+</mat-accordion> -->

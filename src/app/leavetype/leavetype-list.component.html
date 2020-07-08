@@ -4,7 +4,7 @@
         <!-- LeaveType table -->
         <div class="col-md-12">
             <div class="inner">
-                <h3>Leave Types</h3>
+                <h3>Leave Types List</h3>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -22,7 +22,7 @@
                             <td>{{leavetype.LDESC}}</td>
                             <td>{{leavetype.LABRV}}</td>
                             <td>{{leavetype.LWEIGHT}}</td>
-                            <td>{{leavetype.STATUS}}</td>
+                            <td>{{leavetype.STATUS=='A'? 'Active': 'De Active'}}</td>
                             <td>
                                 <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/leavetype/', leavetype.TRNNO]">Edit</button>
                                 <button type="button" class="btn btn-danger btn-sm" (click)="deleteLeaveType(leavetype)">Remove</button>

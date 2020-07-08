@@ -24,7 +24,7 @@ export class FeetypeComponent implements OnInit {
   addFeeType() {
     this.feetypeForm = this.fb.group({
       ftype: [''],
-      status: ['']
+      status: ['A']
     });
   }
   submitForm() {

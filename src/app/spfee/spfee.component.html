@@ -1,0 +1,85 @@
+<form [formGroup]="spFeeForm" (ngSubmit)='onSubmitClassFee()'>
+    <div class="container">
+        <h3>Add Special Fee</h3>
+        <div class="row centre">  
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]='myDatePickerDOB' disabled=true formControlName='SPDATE'>
+                    <mat-datepicker-toggle matSuffix [for]='myDatePickerDOB' disabled=false>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #myDatePickerDOB disabled=false touchUi>
+                    </mat-datepicker>
+                </mat-form-field>
+            </div>          
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Class </mat-label>
+                    <mat-select formControlName='CLASS_TRNNO' (selectionChange)="classSelectionChange($event)">
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let cl of ClassesList" [value]="cl.TRNNO">
+                            {{cl.CNAME}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div>
+              <button type="button" mat-button (click)='addNewSpFee()'>Add New Student</button>
+            </div>
+          </div>
+        <div formArrayName="SPFEEDTLs">
+            <div *ngFor="let X of spFeeForm['controls'].SPFEEDTLs['controls']; let ix=index">            
+                <div formGroupName="{{ix}}" class="EMDTLs">
+                  
+                    <div class="row">
+                        <div class="col-md-3">
+                            <mat-form-field>
+                                <mat-label>Student Name </mat-label>
+                                <mat-select formControlName='TRNNO' (selectionChange)="nameSelectionChange($event)">
+                                    <mat-option>--</mat-option>
+                                    <mat-option *ngFor="let em of SelectedEmpList" [value]="em.TRNNO">
+                                        {{em.EMP_NAME}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <mat-form-field>
+                                <mat-label>Father Name</mat-label>
+                                <input matInput type="text" formControlName="EMP_F_NAME">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <mat-form-field>
+                                <mat-label>Actual Fee</mat-label>
+                                <input matInput type="number" formControlName="SPFEE">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <mat-form-field>
+                                <mat-label>Current Fee</mat-label>
+                                <input matInput type="number" formControlName="NPFEE">
+                            </mat-form-field>
+                        </div>  
+                        <div class="col-md-2">
+                            <button mat-icon-button title="delete row" (click)="deleteRow(ix)"
+                              *ngIf="spFeeForm['controls'].SPFEEDTLs['controls'].length > 1">
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </div>                      
+                    </div>
+                </div>
+            </div>           
+        </div>
+        <div class="row">            
+            <div class="col-md-12">
+                <button  mat-button type="submit" [disabled]='spFeeForm.invalid'>Submit</button>
+                <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
+                <div>Angular Generated Form Model : {{spFeeForm.value | json}}</div>
+            </div>
+        </div>
+    </div>
+</form>

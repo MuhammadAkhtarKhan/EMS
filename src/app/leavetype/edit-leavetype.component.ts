@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LeaveTypeService } from '../shared/leavetype.service';
+import { statusType } from '../shared/Interfaces/status';
 
 @Component({
   selector: 'app-edit-leavetype',
@@ -9,7 +10,10 @@ import { LeaveTypeService } from '../shared/leavetype.service';
   styleUrls: ['./edit-leavetype.component.css']
 })
 export class EditLeavetypeComponent implements OnInit {
-
+  StatusTypeList: statusType[] = [
+    { id: 1, status: 'A', state: 'Active' },
+    { id: 2, status: 'D', state: 'De Active' }
+  ]
   LeaveTypesList: any = [];
   updateLeaveTypeForm: FormGroup;
   constructor(

@@ -1,0 +1,105 @@
+
+<mat-tab-group>
+    <mat-tab label="Add New Class Fee">
+        <form [formGroup]="classFeeForm" (ngSubmit)='onSubmitClassFee()'>
+            <div class="container">
+                <h3>Add Class Fee</h3>
+                <div class="row centre">            
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <mat-label>Class </mat-label>
+                            <mat-select formControlName='CLASS_TRNNO' (selectionChange)='classSelectionChange($event)'>
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let cl of ClassesList" [value]="cl.TRNNO">
+                                    {{cl.CNAME}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div formArrayName="CLFEEDTLs">
+                    <div *ngFor="let X of classFeeForm['controls'].CLFEEDTLs['controls']; let ix=index">            
+                        <div formGroupName="{{ix}}" class="EMDTLs">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <mat-label>Fee</mat-label>
+                                        <input matInput type="number" formControlName="FEE">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-label>Date</mat-label>
+                                        <input matInput [matDatepicker]='myDatePickerDOB' disabled=true formControlName='ADT'>
+                                        <mat-datepicker-toggle matSuffix [for]='myDatePickerDOB' disabled=false>
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #myDatePickerDOB disabled=false touchUi>
+                                        </mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>           
+                </div>
+                <div class="row">            
+                    <div class="col-md-12">
+                        <button  mat-button type="submit" [disabled]='classFeeForm.invalid'>Submit</button>
+                        <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
+                        <div>Angular Generated Form Model : {{classFeeForm.value | json}}</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-tab>
+    <mat-tab label="Find And Update">
+        <form [formGroup]="classFeeFindForm" (ngSubmit)='onUpdateClassFee()'>
+            <div class="container">
+                <h3>Search Class Fee</h3>
+                <div class="row centre">            
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <mat-label>Class </mat-label>
+                            <mat-select formControlName='CLASS_TRNNO' (selectionChange)='classFindSelectionChange($event)'>
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let cl of ClassesList" [value]="cl.TRNNO">
+                                    {{cl.CNAME}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div formArrayName="CLFEEDTLs">
+                    <div *ngFor="let X of classFeeFindForm['controls'].CLFEEDTLs['controls']; let ix=index">            
+                        <div formGroupName="{{ix}}" class="EMDTLs">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <mat-label>Fee</mat-label>
+                                        <input matInput type="number" formControlName="FEE">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field>
+                                        <mat-label>Date</mat-label>
+                                        <input matInput [matDatepicker]='myDatePickerDOB' disabled=true formControlName='ADT'>
+                                        <mat-datepicker-toggle matSuffix [for]='myDatePickerDOB' disabled=false>
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #myDatePickerDOB disabled=false touchUi>
+                                        </mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>           
+                </div>
+                <div class="row">            
+                    <div class="col-md-12">
+                        <button  mat-button type="submit" [disabled]='classFeeFindForm.invalid'>Update</button>
+                        <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
+                        <div>Angular Generated Form Model : {{classFeeFindForm.value | json}}</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-tab>
+</mat-tab-group>

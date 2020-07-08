@@ -1,0 +1,62 @@
+<form [formGroup]="sectionsForm" (ngSubmit)='onSubmitSection()'>
+    <div class="container">
+        <h3>Add Sections</h3>
+        <div class="row centre">
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Class </mat-label>
+                    <mat-select formControlName='CLASS_TRNNO' (selectionChange)="classSelectionChange($event)">
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let cl of ClassesList" [value]="cl.TRNNO">
+                            {{cl.CNAME}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div>
+                <button type="button" mat-button (click)='addNewSection()'>Add New Section</button>
+            </div>
+        </div>
+        <div formArrayName="SECDTLs">
+            <div *ngFor="let X of sectionsForm['controls'].SECDTLs['controls']; let ix=index">
+                <div formGroupName="{{ix}}" class="EMDTLs">
+                    <div class="row">                        
+                        <div class="col-md-5">
+                            <mat-form-field>
+                                <mat-label>Section Name</mat-label>
+                                <input matInput type="text" formControlName="SNAME">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-5">
+                            <mat-form-field>
+                                <mat-label>Status </mat-label>
+                                <mat-select formControlName='STATUS'>
+                                    <mat-option>--</mat-option>
+                                    <mat-option *ngFor="let cl of StatusTypeList" [value]="cl.status">
+                                        {{cl.state}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2">
+                            <button mat-icon-button title="delete row" (click)="deleteRow(ix)"
+                              *ngIf="sectionsForm['controls'].SECDTLs['controls'].length > 1">
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">            
+            <div class="col-md-12">
+                <button  mat-button type="submit" [disabled]='sectionsForm.invalid'>Submit</button>
+                <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
+                <div>Angular Generated Form Model : {{sectionsForm.value | json}}</div>
+            </div>
+        </div>
+    </div>
+</form>

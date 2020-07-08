@@ -1,0 +1,12 @@
+#msg{
+    color: red;
+    font-size: medium;
+}
+
+:host /deep/ .mat-icon-button .mat-button-wrapper>*{
+    margin-top: 1em;
+    vertical-align: bottom;
+}
+myColor{
+    color: rgba(192, 192, 192, 0.705);
+}

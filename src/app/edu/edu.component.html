@@ -13,10 +13,21 @@
                     <label>Degree Abbreviation</label>
                     <input type="text" formControlName="dabrv" class="form-control" maxlength="6">
                 </div>
-                <div class="form-group">
+                <!-- <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>Status </mat-label>
+                        <mat-select formControlName='status'>
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let cl of StatusTypeList" [value]="cl.status">
+                                {{cl.state}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div> -->
+                <!-- <div class="form-group">
                     <label> Status</label>
                     <input class="form-control" formControlName="status"  maxlength="1">
-                </div>
+                </div> -->
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

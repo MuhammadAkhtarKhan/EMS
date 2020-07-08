@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FeeTypeService } from '../shared/feetype.service';
+import { statusType } from '../shared/Interfaces/status';
 
 @Component({
   selector: 'app-edit-feetype',
@@ -9,7 +10,10 @@ import { FeeTypeService } from '../shared/feetype.service';
   styleUrls: ['./edit-feetype.component.css']
 })
 export class EditFeetypeComponent implements OnInit {
-
+  StatusTypeList: statusType[] = [
+    { id: 1, status: 'A', state: 'Active' },
+    { id: 2, status: 'D', state: 'De Active' }
+  ]
   FeeTypesList: any = [];
   updateFeeTypeForm: FormGroup;
   constructor(
@@ -34,7 +38,7 @@ this.updateForm();
   }
   updateForm(){
     this.updateFeeTypeForm = this.fb.group({
-      BPNAME: [''],
+      FTYPE: [''],
       STATUS: [''],
       TRNNO: ['']
     })
@@ -43,7 +47,7 @@ this.updateForm();
   submitForm() {
       const id = this.actRoute.snapshot.paramMap.get('id');
       this.feetypeService.UpdateFeeType(id, this.updateFeeTypeForm.value).subscribe(res => {
-      this.ngZone.run(() => this.router.navigateByUrl('/feetype-list'))
+      this.ngZone.run(() => this.router.navigateByUrl('/feetype'))
     })
   }
 

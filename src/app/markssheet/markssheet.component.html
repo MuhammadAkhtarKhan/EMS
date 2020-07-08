@@ -1,0 +1,51 @@
+<form [formGroup]='marksForm'>
+    <div class="container">
+        <h2>Marks Sheet:</h2>
+        <div class="row">            
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Class </mat-label>
+                    <mat-select formControlName='CLASS_TRNNO'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let cl of ClassesList" [value]="cl.TRNNO">
+                            {{cl.CNAME}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Date </mat-label>
+                    <mat-select formControlName='MDT'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let mrk of MarkssheetList" [value]="mrk.TRNNO">
+                            {{mrk.MDT}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Group </mat-label>
+                    <mat-select formControlName='GRPMST_TRNNO'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let gp of GroupsList" [value]="gp.TRNNO">
+                            {{gp.GRPNAME}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Exam Type </mat-label>
+                    <mat-select formControlName='EXAM_TRNNO'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let ex of ExamsList" [value]="ex.TRNNO">
+                            {{ex.ETYPE}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</form>

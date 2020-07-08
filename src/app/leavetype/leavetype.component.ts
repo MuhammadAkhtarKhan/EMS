@@ -26,7 +26,7 @@ export class LeavetypeComponent implements OnInit {
       LDESC: [''],
       LABRV: [''],
       LWEIGHT: [''],
-      STATUS: ['']
+      STATUS: ['A']
     });
   }
   submitForm() {

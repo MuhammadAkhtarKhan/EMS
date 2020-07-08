@@ -1,0 +1,74 @@
+<form [formGroup]="groupChangeForm"  (ngSubmit)='onSubmitGroupChange()'>
+    <div class="container">
+        <h2>Change The Group:</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <input  type="text" class="form-control" formControlName='SearchEm'
+                placeholder="  Start searching for a student by name"
+                (click)="onInputClick()" >
+                <br>
+                  <div class="list">
+                    <mat-selection-list>
+                      <mat-list-option  *ngFor="let employee of filtered_data; let i = index;">
+                        <a mat-list-item (click)="onSelect(employee)"><span>{{employee?.TRNNO+" "+ employee?.EMP_NAME+" S/O "+ employee?.EMP_F_NAME }}</span></a>
+                      </mat-list-option>
+                    </mat-selection-list>
+                  </div>
+                </div> 
+            <div class="col-md-6">
+                <mat-form-field>
+                    <mat-label>Student Name</mat-label>
+                    <input matInput type="text" formControlName="EMP_NAME">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Father Name </mat-label>                   
+                        <input matInput type="text" formControlName="EMP_F_NAME">                   
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <mat-label>Registration No</mat-label>
+                    <input matInput type="text" formControlName="EMP_ID">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>From Group </mat-label>
+                    <mat-select formControlName='FGRPMST_TRNNO'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let gp of GroupsList" [value]="gp.TRNNO">
+                            {{gp.GRPNAME}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]='myDatePickerDOB' disabled=true formControlName='CHDATE'>
+                    <mat-datepicker-toggle matSuffix [for]='myDatePickerDOB' disabled=false>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #myDatePickerDOB disabled=false touchUi>
+                    </mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>To Group </mat-label>
+                    <mat-select formControlName='GRPMST_TRNNO'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let gp of GroupsList" [value]="gp.TRNNO">
+                            {{gp.GRPNAME}}                        
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <input type="submit" value="Submit" [disabled]='!groupChangeForm.valid' (onClick)="onSubmitGroupChange()">
+            </div>
+        </div>
+        <div>Angular Generated Form Model : {{groupChangeForm.getRawValue() | json}}</div>
+    </div>
+</form>

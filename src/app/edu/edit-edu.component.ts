@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EduService } from '../shared/edu.service';
+import { statusType } from '../shared/Interfaces/status';
 
 @Component({
   selector: 'app-edit-edu',
@@ -9,7 +10,10 @@ import { EduService } from '../shared/edu.service';
   styleUrls: ['./edit-edu.component.css']
 })
 export class EditEduComponent implements OnInit {
-
+  StatusTypeList: statusType[] = [
+    { id: 1, status: 'A', state: 'Active' },
+    { id: 2, status: 'D', state: 'De Active' }
+  ]
   EdusList: any = [];
   updateEduForm: FormGroup;
   constructor(
@@ -22,7 +26,7 @@ export class EditEduComponent implements OnInit {
     const id = this.actRoute.snapshot.paramMap.get('id');
     this.eduService.GetEdu(id).subscribe((data) => {
       this.updateEduForm = this.fb.group({
-        BPNAME: [data.DNAME],
+        DNAME: [data.DNAME],
         DABRV: [data.DABRV],
         STATUS: [data.STATUS],
         TRNNO:[data.TRNNO]

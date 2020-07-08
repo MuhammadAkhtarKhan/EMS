@@ -1,0 +1,15 @@
+form{
+    padding: 1%;
+}
+.mat-radio-label-content.mat-radio-label-before {
+
+    padding-left: 2px;
+}
+
+:host /deep/ label{
+    margin-bottom: 0;
+    margin-right: 2px;
+}
+/* :host /deep/ div.mat-expansion-panel-body {
+    padding: 0;
+  } */

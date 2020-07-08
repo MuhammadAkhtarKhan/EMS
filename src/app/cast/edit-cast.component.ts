@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CastService } from '../shared/cast.service';
+import { statusType } from '../shared/Interfaces/status';
 
 @Component({
   selector: 'app-edit-cast',
@@ -9,7 +10,10 @@ import { CastService } from '../shared/cast.service';
   styleUrls: ['./edit-cast.component.css']
 })
 export class EditCastComponent implements OnInit {
-
+  StatusTypeList: statusType[] = [
+    { id: 1, status: 'A', state: 'Active' },
+    { id: 2, status: 'D', state: 'De Active' }
+  ]
   CastsList: any = [];
   updateCastForm: FormGroup;
   constructor(

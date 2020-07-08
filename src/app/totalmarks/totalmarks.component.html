@@ -1,0 +1,223 @@
+<mat-tab-group>
+    <mat-tab label="Add New Mark Detail">
+        <form [formGroup]="addNewMarksForm" (ngSubmit)='onSubmitMarks()'>
+            <div class="container">
+                <h2>Total Marks:</h2>
+                <!-- <div formGroupName="MARKTOTALs">        -->
+                <div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <mat-label>Class </mat-label>
+                                <mat-select formControlName='CLASS_TRNNO'>
+                                    <mat-option>--</mat-option>
+                                    <mat-option *ngFor="let cl of ClassesList" [value]="cl.TRNNO">
+                                        {{cl.CNAME}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <mat-label>Group </mat-label>
+                                <mat-select formControlName='GRPMST_TRNNO'>
+                                    <mat-option>--</mat-option>
+                                    <mat-option *ngFor="let gp of GroupsList" [value]="gp.TRNNO">
+                                        {{gp.GRPNAME}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <mat-label>Exam Type </mat-label>
+                                <mat-select formControlName='EXAM_TRNNO'>
+                                    <mat-option>--</mat-option>
+                                    <mat-option *ngFor="let ex of ExamsList" [value]="ex.TRNNO">
+                                        {{ex.ETYPE}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <mat-label>Date</mat-label>
+                                <input matInput [matDatepicker]='myDatePickerDOB' disabled=true formControlName='MDT'>
+                                <mat-datepicker-toggle matSuffix [for]='myDatePickerDOB' disabled=false>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #myDatePickerDOB disabled=false touchUi>
+                                </mat-datepicker>
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div>
+                        <button type="button" mat-button (click)='addNewSuject()'>Add New Subject</button>
+                    </div>
+                </div>
+                <div formArrayName="MARKTOTALDTLs">
+                    <div *ngFor="let X of addNewMarksForm['controls'].MARKTOTALDTLs['controls']; let ix=index">
+                        <div formGroupName="{{ix}}" class="EMDTLs">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <mat-label>Subject</mat-label>
+                                        <mat-select formControlName="TRNNO"
+                                            (selectionChange)='subjectSelectionChange(ix,$event)'>
+                                            <mat-option>--</mat-option>
+                                            <mat-option *ngFor="let sub of SubjectsList" [value]="sub.TRNNO">
+                                                {{sub.SNAME}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <mat-label>Subject Code</mat-label>
+                                        <input matInput type="text" formControlName="SCODE">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field>
+                                        <mat-label>Marks</mat-label>
+                                        <input matInput type="number" formControlName="TOTMARKS">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <button mat-icon-button title="delete row" color="warn" (click)="deleteRow(ix)"
+                                        *ngIf="addNewMarksForm['controls'].MARKTOTALDTLs['controls'].length > 1">
+                                        <mat-icon id="deleteid">delete</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">Total Marks:</div>
+                        <div class="col-md-2">{{getSumMarks(2)}}</div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="msg" *ngIf="addNewMarksForm.invalid? mymessage: ''">{{mymessage}}</div>
+                    <div class="col-md-12">
+                        <button type="submit" [disabled]='addNewMarksForm.invalid'>Submit</button>
+                        <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
+                        <div>Angular Generated Form Model : {{addNewMarksForm.value | json}}</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-tab>
+    <mat-tab label="Find And Update">
+        <form [formGroup]='totalMarksForm' (ngSubmit)='onSubmit()'>
+            <div class="container">
+                <h2>Total Marks:</h2>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <mat-label>Class </mat-label>
+                            <mat-select formControlName='CLASS_TRNNO' (selectionChange)='classSelectionChange($event)'>
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let cl of ClassesList" [value]="cl.TRNNO">
+                                    {{cl.CNAME}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <mat-label>Group </mat-label>
+                            <mat-select formControlName='GRPMST_TRNNO' (selectionChange)='groupSelectionChange($event)'>
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let gp of GroupsList" [value]="gp.TRNNO">
+                                    {{gp.GRPNAME}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <mat-label>Exam Type </mat-label>
+                            <mat-select formControlName='EXAM_TRNNO'
+                                (selectionChange)='examTypeSelectionChange($event)'>
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let ex of ExamsList" [value]="ex.TRNNO">
+                                    {{ex.ETYPE}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <mat-label>Date </mat-label>
+                            <mat-select formControlName='MDT' (selectionChange)='dateSelectionChange($event)'>
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let mrk of TotalmarksList" [value]="mrk.MDT">
+                                    {{mrk.MDT | date:'shortDate'}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="msg">{{message}}</div>
+                    <!-- <div id="msg" *ngIf="totalMarksForm.invalid? message: ''">{{message}}</div> -->
+                    <div class="col-md-12">
+                        <button type="submit" [disabled]='totalMarksForm.invalid'>Submit</button>
+                        <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
+                        <div>Angular Generated Form Model : {{totalMarksForm.value | json}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="container wrapper">
+                <div class="row">
+
+                    <!-- Bp table -->
+                    <div class="col-md-12">
+                        <div class="inner">
+                            <h3>Total Marks Details</h3>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Subject</th>
+                                        <th scope="col">Code</th>
+                                        <th scope="col">Marks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let mdtl of TotalmarksdtlSubjectList; let i=index">
+                                        <!-- items[items.findIndex(el => el.id === item.id)] = item; -->
+                                        <th scope="row">{{i+1}}</th>
+                                        <td>{{mdtl.SNAME}}</td>
+                                        <td>{{mdtl.SCODE}}</td>
+                                        <td>{{mdtl.TOTMARKS}}</td>
+                                    </tr>
+                                    <tr *ngIf='getSum(3)>0'>
+                                        <td colspan="3"
+                                            style="font-size: medium; font-weight: bold; text-align: center;">Total
+                                            Marks</td>
+                                        <td style="font-size: medium; font-weight: bold;">{{getSum(3)}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div *ngIf='show'>
+                                <!-- <button type="button" class="btn btn-success btn-sm move-right">Update</button>  -->
+                                <!-- [routerLink]="['/totalmarkdtl/', 141]" -->
+                                <button type="button" (click)="editDetail()" class="btn btn-success btn-sm move-right">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-tab>
+</mat-tab-group>

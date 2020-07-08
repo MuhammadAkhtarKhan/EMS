@@ -1,0 +1,36 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+:host /deep/ div.mat-expansion-panel-body {
+  padding: 0;
+}
+/* :host /deep/.mat-icon-button{
+  margin-top: 0em;
+  vertical-align:0em;
+} */
+:host /deep/ #idMenu{
+  margin-top: auto;
+  vertical-align:middle;
+}
+:host /deep/.example-spacer {
+  flex: 1 1 auto;
+  text-align: right;
+}

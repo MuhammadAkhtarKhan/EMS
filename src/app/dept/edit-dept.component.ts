@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeptService } from '../shared/dept.service';
+import { statusType } from '../shared/Interfaces/status';
 
 @Component({
   selector: 'app-edit-dept',
@@ -9,7 +10,10 @@ import { DeptService } from '../shared/dept.service';
   styleUrls: ['./edit-dept.component.css']
 })
 export class EditDeptComponent implements OnInit {
-
+  StatusTypeList: statusType[] = [
+    { id: 1, status: 'A', state: 'Active' },
+    { id: 2, status: 'D', state: 'De Active' }
+  ]
   DeptsList: any = [];
   updateDeptForm: FormGroup;
   constructor(

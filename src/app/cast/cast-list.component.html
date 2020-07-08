@@ -18,7 +18,7 @@
                         <tr *ngFor="let cst of CastsList">
                             <th scope="row">{{cst.TRNNO}}</th>
                             <td>{{cst.CDESC}}</td>
-                            <td>{{cst.STATUS}}</td>
+                            <td>{{cst.STATUS=='A'? 'Active': 'De Active'}}</td>
                             <td>
                                 <button mat-button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/cast/', cst.TRNNO]">Edit</button>
                                 <button type="button" class="btn btn-danger btn-sm" (click)="deleteCast(cst)">Remove</button>

@@ -1,7 +1,8 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { BpService } from '../shared/bp.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { statusType } from '../shared/Interfaces/status';
 
 @Component({
   selector: 'app-bp',
@@ -11,19 +12,23 @@ import { Router } from '@angular/router';
 export class BpComponent implements OnInit {
   bpForm: FormGroup;
   BpArr: any = [];
-
+  StatusTypeList: statusType[] = [
+    { id: 1, status: 'A', state: 'Active' },
+    { id: 2, status: 'D', state: 'De Active' }
+  ]
   constructor(public fb: FormBuilder,
               private ngZone: NgZone,
               private router: Router,
-              public bpService: BpService) { }
+              public bpService: BpService) 
+              { }
 
   ngOnInit() {
     this.addBp();
   }
   addBp() {
     this.bpForm = this.fb.group({
-      bpname: [''],
-      status: ['']
+      bpname: ['', [Validators.required, Validators.minLength(2)]],
+      status: ['A']
     });
   }
   submitForm() {

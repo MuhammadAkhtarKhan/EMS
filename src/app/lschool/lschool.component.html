@@ -1,0 +1,38 @@
+<form [formGroup]='LSchoolForm' (ngSubmit)='OnSubmitForm()'>
+
+    <div class="container">
+        <h2>Left School Information</h2>
+        <div class="row">
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]='myDatePickerRDATE' disabled=true formControlName='LDATE'>
+                    <mat-datepicker-toggle matSuffix [for]='myDatePickerRDATE' disabled=false>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #myDatePickerRDATE disabled=false touchUi>
+                    </mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <mat-label>Select Class</mat-label>
+                    <mat-select formControlName="CLASS_TRNNO">
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let cls of classList" [value]="cls.TRNNO">
+                            {{cls.CNAME}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- <div id="msg" *ngIf="LSchoolForm.invalid? message: ''">{{message}}</div> -->
+            <div class="col-md-12">
+                <button type="submit" [disabled]='LSchoolForm.invalid'>Submit</button>
+                <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
+                <div>Angular Generated Form Model : {{LSchoolForm.value | json}}</div>
+            </div>
+        </div>
+    </div>
+</form>

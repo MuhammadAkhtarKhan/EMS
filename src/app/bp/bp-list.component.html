@@ -18,7 +18,7 @@
                         <tr *ngFor="let bps of BpsList">
                             <th scope="row">{{bps.TRNNO}}</th>
                             <td>{{bps.BPNAME}}</td>
-                            <td>{{bps.STATUS}}</td>
+                            <td>{{bps.STATUS=='A'? 'Active': 'De Active'}}</td>
                             <td>
                                 <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/bp/', bps.TRNNO]">Edit</button>
                                 <button type="button" class="btn btn-danger btn-sm" (click)="deleteBp(bps)">Remove</button>
@@ -31,6 +31,5 @@
         <div class="row">
             <router-outlet></router-outlet>
         </div>
-
     </div>
 </div>

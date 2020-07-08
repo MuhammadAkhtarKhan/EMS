@@ -1,0 +1,39 @@
+<div class="container wrapper">
+    <div class="row">
+
+        <!-- Bp table -->
+        <div class="col-md-12">
+            <div class="inner">
+                <h3>Group Details</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Code</th>
+                            <th scope="col">Marks</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let mdtl of TotalMarkdtlsList">
+                            <!-- items[items.findIndex(el => el.id === item.id)] = item; -->
+                            <th scope="row">{{mdtl.SR}}</th>
+                            <td>{{mdtl.SUBJECT_TRNNO}}</td>
+                            <td>{{mdtl.TOTMARKS}}</td>
+                            <!-- <td>{{mdtl.SNAME}}</td> -->
+                            <td>
+                                <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/totalmarkdtl/', mdtl.TRNNO]">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteTotalMarksdtl(mdtl)">Remove</button>
+                            </td>
+                        </tr>
+                        <button type="button" class="btn btn-success btn-sm move-right" (click)="replaceCodeWithName()">clickMe</button>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <!-- <router-outlet></router-outlet> -->
+        </div>
+    </div>
+</div>

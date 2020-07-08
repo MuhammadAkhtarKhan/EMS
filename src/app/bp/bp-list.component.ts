@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BpService } from '../shared/bp.service';
+import { statusType } from '../shared/Interfaces/status';
+
 
 @Component({
   selector: 'app-bp-list',
@@ -8,6 +10,10 @@ import { BpService } from '../shared/bp.service';
 })
 export class BpListComponent implements OnInit {
   BpsList: any = [];
+  StatusTypeList: statusType[] = [
+    { id: 1, status: 'A', state: 'Active' },
+    { id: 2, status: 'D', state: 'De Active' }
+  ]
   constructor(public bpService: BpService) { }
 
   ngOnInit() {

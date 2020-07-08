@@ -1,8 +1,9 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { BpService } from '../shared/bp.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Bp } from '../models/bp';
+import { statusType } from '../shared/Interfaces/status';
+
 
 @Component({
   selector: 'app-edit-bp',
@@ -10,7 +11,11 @@ import { Bp } from '../models/bp';
   styleUrls: ['./edit-bp.component.css']
 })
 export class EditBpComponent implements OnInit {
-  BpsList: any = [];
+  BpsList: any = [];  
+  StatusTypeList: statusType[] = [
+    { id: 1, status: 'A', state: 'Active' },
+    { id: 2, status: 'D', state: 'De Active' }
+  ]
   updateBpForm: FormGroup;
   constructor(
     private actRoute: ActivatedRoute,
@@ -19,11 +24,12 @@ export class EditBpComponent implements OnInit {
     private ngZone: NgZone,
     private router: Router
   ) {
+    console.log(this.actRoute.snapshot);
     const id = this.actRoute.snapshot.paramMap.get('id');
     this.bpService.GetBp(id).subscribe((data) => {
       this.updateBpForm = this.fb.group({
-        BPNAME: [data.BPNAME],
-        STATUS: [data.STATUS],
+        BPNAME: [data.BPNAME,[Validators.required, Validators.minLength(2)]],
+        STATUS: [data.STATUS,[Validators.required]],
         TRNNO:[data.TRNNO]
       })
     })

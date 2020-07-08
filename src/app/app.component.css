@@ -11,9 +11,17 @@ mat-sidenav-container{
     height: 100%;
 }
 mat-sidenav, mat-sidenav-content{
-padding: 16px;
+padding: 0px;
+box-sizing: content-box;
 }
 mat-sidenav{
     background-color: rgb(228, 196, 196);
-    width: 200px;
+    width: 230px;
+}
+/* .mat-expansion-panel-body{
+    padding: 0 !important;
+} */
+:host /deep/ .mat-icon-button .mat-button-wrapper>*{
+    margin-top: 1em;
+    vertical-align: bottom;
 }

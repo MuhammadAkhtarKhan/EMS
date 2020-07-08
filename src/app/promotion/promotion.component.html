@@ -1,0 +1,93 @@
+<form [formGroup]="promotionForm"  (ngSubmit)='onSubmitPromotion()'>
+    <div class="container">
+        <h2>Promote the students:</h2>
+        <div class="row">
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label> Group </mat-label>
+                    <mat-select formControlName='GRPMST_TRNNO' (selectionChange)='groupSelectionChange($event)'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let gp of GroupsList" [value]="gp.TRNNO">
+                            {{gp.GRPNAME}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Date </mat-label>
+                    <mat-select formControlName='PDT' (selectionChange)='dateSelectionChange($event)'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let pl of SelectedPromotionsList" [value]="pl.PDT">
+                            {{pl.PDT | date:'shortDate'}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <!-- <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Date</mat-label>
+                    <input matInput [matDatepicker]='myDatePickerDOB' disabled=true formControlName='PDT'>
+                    <mat-datepicker-toggle matSuffix [for]='myDatePickerDOB' disabled=false>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #myDatePickerDOB disabled=false touchUi>
+                    </mat-datepicker>
+                </mat-form-field>
+            </div> -->
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>From Class </mat-label>
+                    <mat-select formControlName='FCLASS_TRNNO' (selectionChange)="classSelectionChange($event)">
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let fcl of ClassesList" [value]="fcl.TRNNO">
+                            {{fcl.CNAME}}                        
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>To Class </mat-label>
+                    <mat-select formControlName='CLASS_TRNNO' (selectionChange)="toclassSelectionChange($event)">
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let cls of ClassesList" [value]="cls.TRNNO">
+                            {{cls.CNAME}}                        
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>From Section  </mat-label>
+                    <mat-select formControlName='SECDTL_TRNNO' >
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let sec of SelectedDetailList" [value]="sec.TRNNO">
+                            {{sec.SNAME}}                        
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>To Section </mat-label>
+                    <mat-select formControlName='SECDTL_SR'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let secdtl of SelectedDetailList2" [value]="secdtl.SR">
+                            {{secdtl.SNAME}}                        
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="color: brown;">{{message}}</div>
+                  <div>
+                    <input type="button" (click)='onClick()' value="Show Students" >
+                </div>
+                <!-- <div>
+                    <input type="button" (click)='onClick()' value="Show Students" [disabled]='!promotionForm.valid' >
+                </div> -->
+            </div>           
+        </div>
+        <div>Angular Generated Form Model : {{promotionForm.getRawValue() | json}}</div>
+    </div>
+</form>

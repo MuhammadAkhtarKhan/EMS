@@ -9,14 +9,14 @@
                     <label>Fee Type</label>
                     <input type="text" formControlName="ftype" class="form-control" maxlength="100">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label>Status</label>
                     <input class="form-control" formControlName="status"  maxlength="1">
-                </div>
+                </div> -->
+                <div>Angular Generated Form Model : {{feetypeForm.value | json}}</div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-        </div>
-        Angular Generated Form Model : {{feetypeForm.value | json}}
+        </div>        
         <div class="col-md-6">
             <app-feetype-list></app-feetype-list>
         </div>

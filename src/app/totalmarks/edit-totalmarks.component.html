@@ -1,0 +1,209 @@
+<!-- <form [formGroup]='totalMarksForm' (ngSubmit)='onSubmit()'> -->
+<!-- <div class="container">
+        <h2>Total Marks:</h2>
+        <div class="row">            
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Class </mat-label>
+                    <mat-select  formControlName='CLASS_TRNNO'
+                    (selectionChange)='classSelectionChange($event)'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let cl of ClassesList" [value]="cl.TRNNO">
+                            {{cl.CNAME}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>            
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Group </mat-label>
+                    <mat-select formControlName='GRPMST_TRNNO' (selectionChange)= 'groupSelectionChange($event)'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let gp of GroupsList" [value]="gp.TRNNO">
+                            {{gp.GRPNAME}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>            
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Exam Type </mat-label>
+                    <mat-select formControlName='EXAM_TRNNO' (selectionChange)='examTypeSelectionChange($event)'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let ex of ExamsList" [value]="ex.TRNNO">
+                            {{ex.ETYPE}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Date </mat-label>
+                    <mat-select  formControlName='MDT' (selectionChange)='dateSelectionChange($event)'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let mrk of TotalmarksList" [value]="mrk.MDT">
+                            {{mrk.MDT | date:'shortDate'}}                          
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div id="msg" *ngIf="totalMarksForm.invalid? message: ''">{{message}}</div>
+            <div class="col-md-12">
+              <button type="submit" [disabled]='totalMarksForm.invalid'>Submit</button>
+              <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
+<!-- <div>Angular Generated Form Model : {{totalMarksForm.value | json}}</div>
+            </div>
+          </div>
+    </div> -->
+<!-- <div class="container wrapper"> -->
+<!-- <div class="row">    
+            
+            <div class="col-md-12">
+                <div class="inner">
+                    <h3>Group Details</h3>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>  
+                                <th scope="col">#</th>                              
+                                <th scope="col">Subject</th>
+                                <th scope="col">Code</th>
+                                <th scope="col">Marks</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let mdtl of TotalmarksdtlSubjectList; let i=index">                                
+                                <th scope="row">{{i+1}}</th>
+                                <td>
+                                    <div class="form-group">                                        
+                                        <input type="text" formControlName="SNAME" class="form-control" [value]="mdtl.SNAME">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">                                       
+                                        <input type="text" formControlName="SCODE" class="form-control" [value]="mdtl.SCODE">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">                                        
+                                        <input type="text" formControlName="TOTMARKS" class="form-control" [value]="mdtl.TOTMARKS">
+                                    </div>
+                                </td>                                                            
+                                
+                            </tr>
+                            <tr *ngIf='getSum(3)>0'>
+                                <td colspan="3" style="font-size: medium; font-weight: bold; text-align: center;">Total Marks</td>                                                                                                
+                                <td style="font-size: medium; font-weight: bold;">{{getSum(3)}}</td>
+                            </tr>                                                   
+                        </tbody>                       
+                    </table> 
+                    <div *ngIf='show'>
+                        <button type="submit" class="btn btn-success btn-sm move-right">Update</button>                        
+                    </div>                  
+                </div>
+            </div>            
+        </div>
+    </div> -->
+<!-- </form> -->
+
+<form [formGroup]="tableForm" *ngIf="dataSource && TotalmarksList" (ngSubmit)='onSubmit()'>
+    <div class="container" >        
+        <h2>Total Marks:</h2> 
+        <!-- <div formGroupName="MARKTOTALs">        -->
+            <div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <mat-label>Class </mat-label>
+                        <mat-select formControlName='CLASS_TRNNO'>
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let cl of ClassesList" [value]="cl.TRNNO">
+                                {{cl.CNAME}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <mat-label>Group </mat-label>
+                        <mat-select formControlName='GRPMST_TRNNO'>
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let gp of GroupsList" [value]="gp.TRNNO">
+                                {{gp.GRPNAME}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <mat-label>Exam Type </mat-label>
+                        <mat-select formControlName='EXAM_TRNNO'>
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let ex of ExamsList" [value]="ex.TRNNO">
+                                {{ex.ETYPE}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <mat-label>Date</mat-label>
+                        <input matInput [matDatepicker]='myDatePickerDOB' disabled=true
+                            formControlName='MDT'>
+                        <mat-datepicker-toggle matSuffix [for]='myDatePickerDOB' disabled=false>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #myDatePickerDOB disabled=false touchUi>
+                        </mat-datepicker>
+                    </mat-form-field>           
+                    
+                </div>
+            </div>  
+        </div>      
+        <div>
+            <mat-table formArrayName="MARKTOTALDTLs" [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="SR">
+                    <mat-header-cell *matHeaderCellDef> SR # </mat-header-cell>
+                    <mat-cell *matCellDef="let row let rowIndex = index" [formGroupName]="rowIndex">
+                        <input type="text" size="2" readonly formControlName="SR"> </mat-cell>
+                    <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                </ng-container>
+
+
+                <ng-container matColumnDef="SNAME">
+                    <mat-header-cell *matHeaderCellDef> Subject Name </mat-header-cell>
+                    <mat-cell *matCellDef="let row let rowIndex = index"                    
+                    [formGroupName]="rowIndex">
+                        <input type="text" id="rowIndex" formControlName="SNAME">
+                    </mat-cell>
+                    <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="SCODE">
+                    <mat-header-cell *matHeaderCellDef> Subject Code </mat-header-cell>
+                    <mat-cell *matCellDef="let row let rowIndex = index" [formGroupName]="rowIndex">
+                        <input type="text" id="rowIndex" formControlName="SCODE" contenteditable="true">
+                    </mat-cell>
+                    <mat-footer-cell id="totmark" *matFooterCellDef>Total Marks:</mat-footer-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="TOTMARKS" >
+                    <mat-header-cell *matHeaderCellDef> Marks </mat-header-cell>
+                    <mat-cell *matCellDef="let row let rowIndex = index" [formGroupName]="rowIndex">
+                        <input type="text" id={{rowIndex}}      size="3"
+                        (input)="inputEvent($event, rowIndex)"
+                         formControlName="TOTMARKS" >
+                    </mat-cell>
+                    <mat-footer-cell id="totmark" *matFooterCellDef> {{ getSum(3) }}</mat-footer-cell>
+                </ng-container>
+
+                <!-- Header and Row Declarations -->
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                <mat-footer-row class="sticky-footer" *matFooterRowDef="displayedColumns"></mat-footer-row>
+            </mat-table>
+        </div>
+        <button type="submit">Update</button>
+    </div>
+    <div>Angular Generated Form Model : {{tableForm.value | json}}</div>
+</form>

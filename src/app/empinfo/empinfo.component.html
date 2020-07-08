@@ -1,0 +1,420 @@
+<form [formGroup]='empForm' (ngSubmit)='onSubmit()'>
+  <div class="container">
+    <h1>Student Information</h1>
+    <mat-horizontal-stepper>
+      <mat-step label="General Information" state="info">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div>
+                <mat-form-field>
+                  <mat-label>Reg. No </mat-label>
+                  <input matInput type="text" [(ngModel)]='EMP_ID' formControlName='EMP_ID'>
+                </mat-form-field>
+              </div>
+              <div hidden='true'>
+                <mat-form-field>
+                  <mat-label>TRNNO </mat-label>
+                  <input matInput type="text" [(ngModel)]='TRNNO' formControlName='TRNNO'>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Addmission No </mat-label>
+                  <input matInput type="NUMBER" [(ngModel)]='ADIMNO' (change)='onChangeAdm()' formControlName='ADIMNO'>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field hintLabel="Max 50 characters" appearance="standard">
+                  <mat-label>Student Name</mat-label>
+                  <input matInput #input maxlength="50" placeholder="Please enter name"
+                    oninput="this.value = this.value.toUpperCase()" formControlName='EMP_NAME'>
+                  <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>B Form </mat-label>
+                  <input matInput type="text" formControlName='CNIC'>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Father Name </mat-label>
+                  <input matInput type="text" oninput="this.value = this.value.toUpperCase()"
+                    formControlName='EMP_F_NAME'>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Father CNIC </mat-label>
+                  <input matInput type="text" formControlName='FCNIC'>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Date Of Birth </mat-label>
+                  <input matInput [matDatepicker]='myDatePickerDOB' disabled=true [max]='startDate'
+                    formControlName='DOB'>
+                  <mat-datepicker-toggle matSuffix [for]='myDatePickerDOB' disabled=false></mat-datepicker-toggle>
+                  <mat-datepicker #myDatePickerDOB disabled=false touchUi [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Blood Group </mat-label>
+                  <mat-select formControlName='BP_TRNNO'>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let bp of BpsList" [value]="bp.TRNNO">
+                      {{bp.BPNAME}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Cast </mat-label>
+                  <mat-select formControlName='CST_TRNNO'>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let cast of CastsList" [value]="cast.TRNNO">
+                      {{cast.CDESC}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <!-- [matDatepickerFilter]='datefilter'  -->
+              <div>
+                <mat-form-field>
+                  <mat-label>Date Of Admission </mat-label>
+                  <input matInput [(ngModel)]="ADT" (ngModelChange)="updateCalcs($event)" [matDatepicker]='myDatePicker'
+                    [max]='maxDate' formControlName='ADT'>
+                  <mat-datepicker-toggle matSuffix [for]='myDatePicker'></mat-datepicker-toggle>
+                  <mat-datepicker #myDatePicker touchUi></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Group</mat-label>
+                  <mat-select formControlName='GRPMST_TRNNO'>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let group of GroupsList" [value]="group.TRNNO">
+                      {{group.GRPNAME}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error>Please choose a Group</mat-error>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Class</mat-label>
+                  <mat-select formControlName='CL_TRNNO' (selectionChange)="classSelectionChange($event)">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let class of ClassesList" [value]="class.TRNNO">
+                      {{class.CNAME}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error>Please choose a Class</mat-error>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Section</mat-label>
+                  <mat-select formControlName='SEC_TRNNO'>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let section of SelectedSectionsList" [value]="section.SR">
+                      {{section.SNAME}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error>Please choose a section</mat-error>
+                </mat-form-field>
+              </div>
+              <br>
+              <div>
+                <label id="lblMarginSet">Gender :</label>
+                <mat-radio-group name='SEX' labelPosition='before' formControlName='SEX'>
+                  <mat-radio-button value='1'> Male</mat-radio-button>
+                  <mat-radio-button value='0'> Female</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <br>
+              <div>
+                <label>Certificate :</label>
+                <mat-radio-group name='Certificate' labelPosition='before' (change)='onChange($event)'
+                  formControlName='CERTIFICATE'>
+                  <mat-radio-button value='Y'> Yes</mat-radio-button>
+                  <mat-radio-button value='N'> No</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div id="certificate" *ngIf="isHidden">
+                <mat-form-field>
+                  <mat-label>School Leaving Date </mat-label>
+                  <input matInput [matDatepicker]='myDatePicker' disabled=true [matDatepickerFilter]='datefilter'
+                    [max]='maxDate' formControlName='PSCHDT'>
+                  <mat-datepicker-toggle matSuffix [for]='myDatePicker' disabled=false></mat-datepicker-toggle>
+                  <mat-datepicker disabled=false #myDatePicker touchUi></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <!-- <div>
+                <mat-form-field>
+                  <mat-label>Email </mat-label>
+                  <input matInput type="email" formControlName='EMAILST'>
+                </mat-form-field>
+              </div> -->
+              <br>
+              <div>               
+                <label>Fee Type :</label>
+                <mat-radio-group name='FeeType' labelPosition='before' (change)='feeTypeSelectionChange($event)'
+                  formControlName='FTYPE'>
+                  <mat-radio-button value='F'> Full</mat-radio-button>
+                  <mat-radio-button value='O'> Other</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div id="fee" *ngIf="hidden">
+                <mat-form-field>
+                  <mat-label>Enter Fee </mat-label>
+                  <input matInput type="number" formControlName='FEE'>
+                </mat-form-field>
+              </div> 
+              <br>            
+              <div>
+                <mat-form-field>
+                  <mat-label>Student Type </mat-label>
+                  <mat-select formControlName='STYPE'>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let stype of StypeList" [value]="stype.abr">
+                      {{stype.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button type="button" mat-button matStepperNext>Next</button>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step label="Address" state="home">
+        <div class="container">
+
+          <!-- <div formArray='EMDTL' *ngFor="let address of EMDTL; let i=index">
+                  <div formGroupName='i'>
+                    <mat-form-field>
+                      <mat-label>Permanent Address</mat-label>
+                      <textarea matInput maxlength="200" placeholder=" Ex P-40 Naseer Chowk Amin Town Fsd"
+                        formControlName='ADDDESC'></textarea>
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>Address Type </mat-label>
+                      <mat-select formControlName='ADDTYPE'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let adt of AddtypeList" [value]="adt.type">
+                          {{adt.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+               
+              </div> -->
+          <!-- <div>
+              <div>
+                <button (click)='addAddress()'>Add More Address</button>
+              </div>
+                <div formArrayName="EMDTL" *ngFor="let item of EMDTLFormGroups.controls; let i = index;">
+                  <div [formGroupName]="i">
+                    <input formControlName="ADDDESC" placeholder="Item name">            
+                  </div>
+                  <!-- Chosen name: {{ empForm.controls.EMDTL.controls[i].controls.ADDDESC.value }} -->
+
+          <!-- <div formArrayName="EMDTL">
+                <h3>Aliases</h3> <button (click)="addAlias()">Add Alias</button>
+        
+                <div *ngFor="let alias of aliases.controls; let i=index">
+                  <!-- The repeated alias template -->
+          <!-- <label>
+                    Alias:
+                    <input type="text" [formControlName]="i">
+                  </label>
+                </div>
+              </div> -->
+          <!-- X -->
+          <div class="row">
+            <div>
+              <button type="button" mat-button (click)='addNewAddress()'>Add Address</button>
+            </div>
+          </div>
+          <div formArrayName="EMDTLs">
+            <div *ngFor="let X of empForm['controls'].EMDTLs['controls']; let ix=index">
+              <div formGroupName="{{ix}}" class="EMDTLs">
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field>
+                      <mat-label>Address</mat-label>
+                      <textarea matInput type="text" formControlName="ADDDESC"></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-4">
+                    <mat-form-field>
+                      <mat-label>Address Type</mat-label>
+                      <mat-select formControlName="ADDTYPE">
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let add of AddtypeList" [value]="add.type">
+                          {{add.name}}
+                        </mat-option>
+                      </mat-select>
+                      <!-- <input matInput type="text" formControlName="ADDTYPE"> -->
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-2">
+                    <button mat-icon-button title="delete address" (click)="deleteRow(ix)"
+                      *ngIf="empForm['controls'].EMDTLs['controls'].length > 1">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button type="button" mat-button matStepperPrevious>Back</button>
+          <button type="button" mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step label="Phones" state='phone'>
+        <div class="row">
+          <div>
+            <button mat-button type="button" (click)='addNewPhone()'>Add New Phone</button>
+          </div>
+        </div>
+        <div formArrayName="EMDTL1">
+          <div *ngFor="let X of empForm['controls'].EMDTL1['controls']; let p=index">
+            <div formGroupName="{{p}}" class="EMDTL1">
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-label>Phone</mat-label>
+                    <input matInput type="number" formControlName="PHNO">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                  <mat-form-field>
+                    <mat-label>Phone Type</mat-label>
+                    <mat-select formControlName="PHTYPE">
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let ph of phoneTypeList" [value]="ph.type">
+                        {{ph.name}}
+                      </mat-option>
+                    </mat-select>
+                    <!-- <input matInput type="text" formControlName="ADDTYPE"> -->
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                  <mat-form-field>
+                    <mat-label>Relation Type</mat-label>
+                    <mat-select formControlName="RELTION">
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let rel of relationtypeList" [value]="rel.id">
+                        {{rel.name}}
+                      </mat-option>
+                    </mat-select>
+                    <!-- <input matInput type="text" formControlName="ADDTYPE"> -->
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <button type="button" mat-icon-button title="delete phone" (click)="deletePhone(p)"
+                    *ngIf="empForm['controls'].EMDTL1['controls'].length > 1">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+        <div>
+          <button type="button" mat-button matStepperPrevious>Back</button>
+          <button type="button" mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step label="Education" state='education'>
+        <div class="row">
+          <div>
+            <button mat-button type="button" (click)='addNewEducation()'>Add New Education</button>
+          </div>
+        </div>
+        <div formArrayName="EMDTL2">
+          <div *ngFor="let X of empForm['controls'].EMDTL2['controls']; let e=index">
+            <div formGroupName="{{e}}" class="EMDTL2">
+              <div class="row">
+                <div class="col-md-5">
+                  <mat-form-field>
+                    <mat-label>Education</mat-label>
+                    <mat-select formControlName="EDU_TRNNO">
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let edu of EducationsList" [value]="edu.TRNNO">
+                        {{edu.DNAME}}
+                      </mat-option>
+                    </mat-select>
+                    <!-- <input matInput type="text" formControlName="ADDTYPE"> -->
+                  </mat-form-field>
+                </div>
+                <div class="col-md-5">
+                  <mat-form-field>
+                    <mat-label>Parent Type</mat-label>
+                    <mat-select formControlName="PTYPE">
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let pt of parentTypeList" [value]="pt.type">
+                        {{pt.name}}
+                      </mat-option>
+                    </mat-select>
+                    <!-- <input matInput type="text" formControlName="ADDTYPE"> -->
+                  </mat-form-field>
+                </div>
+                <!-- <mat-form-field>
+              <mat-label>Grade</mat-label>
+              <input matInput type="text" formControlName="GRD">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>% age</mat-label>
+              <input matInput type="number" formControlName="PERCENT">
+            </mat-form-field> -->
+                <div class="col-md-2">
+                  <button type="button" mat-icon-button title="delete education"
+                    (click)="deleteEducation(e)" *ngIf="empForm['controls'].EMDTL2['controls'].length > 1">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" mat-button matStepperPrevious>Back</button>
+        <p>You're welcome.</p>
+      </mat-step>
+
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="phone">
+        <mat-icon>contact_phone</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="info">
+        <mat-icon>info</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="education">
+        <mat-icon>school</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="home">
+        <mat-icon>home</mat-icon>
+      </ng-template>
+    </mat-horizontal-stepper>
+    <div class="row">
+      <div class="col-md-12">
+        <button type="submit" [disabled]='empForm.invalid'>Submit</button>
+        <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
+        <div>Angular Generated Form Model : {{empForm.value | json}}</div>
+      </div>
+    </div>
+  </div>
+</form>

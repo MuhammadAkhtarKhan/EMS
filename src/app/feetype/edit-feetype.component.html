@@ -1,24 +1,29 @@
 <div class="container wrapper wrapper2">
-    <div class="row">
-
-        <!-- Form -->
-        <div class="col-md-12">
-            <h3>Update Fee Type</h3>
-            <form [formGroup]="updateFeeTypeForm" (ngSubmit)="submitForm()" novalidate>
-                <div class="form-group">
-                    <label>Blood Group</label>
-                    <input type="text" formControlName="FTYPE" class="form-control" maxlength="100">
+    <div>
+        <h3>Update Fee Type</h3>
+        <form [formGroup]="updateFeeTypeForm" (ngSubmit)="submitForm()" novalidate>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Fee Type</label>
+                        <input type="text" class="form-control" formControlName="FTYPE" maxlength="50">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Status</label>
-                    <input type="text" class="form-control" formControlName="STATUS"  maxlength="1">
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>Status </mat-label>
+                        <mat-select formControlName='STATUS'>
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let cl of StatusTypeList" [value]="cl.status">
+                                {{cl.state}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
-                <div class="form-group">                    
-                    <input type="text" formControlName="TRNNO" hidden  class="form-control">
-                </div>                
-                <button type="submit" class="btn btn-primary">Update</button>
-            </form>
-        </div>
-
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
