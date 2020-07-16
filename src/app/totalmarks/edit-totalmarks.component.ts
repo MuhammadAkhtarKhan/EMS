@@ -145,36 +145,26 @@ export class EditTotalmarksComponent implements OnInit {
   ngOnInit(): void {
     console.log("ng OnInit() started");
 
-    this.dataSource = this.tmdtlresolver.detail;
-    // this.actRoute.data.forEach(data=>{
-    //   this.dataSource=data.detail;
-    //   console.log(this.dataSource);
-    // })
-
-    // this.getData().then(() =>
-    // this.isDataAvailable = true); // Now has value;
+   // this.dataSource = this.tmdtlresolver.detail;
+   
     this.loadGroups();
     this.loadClasses();
     this.loadExams();
     this.loadSubjects();
-    this.tableForm = this.fb.group({
-     // MARKTOTALs: this.fb.group({
+    this.tableForm = this.fb.group({    
        TRNNO:[],
         CLASS_TRNNO: [],
         GRPMST_TRNNO: [],
         EXAM_TRNNO: [],
-        MDT: [],
-     // }),      
+        MDT: [],          
       'MARKTOTALDTLs': this.fb.array([])
-
     });
     if (this.dataSource != undefined) {
       this.setUsersForm();
     }
 
     this.tableForm.get('MARKTOTALDTLs').valueChanges.subscribe(users => { 
-      console.log('users', users);  
-     // this.setFocus(rowIndex);   
+      console.log('users', users);     
       this.dataSource=users;
       this.getSum(3);
     });
@@ -188,13 +178,7 @@ export class EditTotalmarksComponent implements OnInit {
       userCtrl.push(this.setUsersFormArray(user))
     })
   };
-  // setFocus(rowIndex){
-  //  const id= document.getElementById(rowIndex);
-  //  //document.forms
-  //  if(id != null){
-  //   id.focus;
-  //  }   
-  // }
+ 
   onValueUpdate($event, rowIndex){
     console.log(rowIndex);
     console.log($event);
@@ -210,17 +194,10 @@ inputEvent($event, index){
    if(id != null){
     
    }   
-  //this.setFocus(index);
+ 
   console.log($event.target.value);
 }
-  // private setUsersFormArray(user) {
-  //   return this.fb.group({
-  //     position: [user.position],
-  //     name: [user.name],
-  //     weight: [user.weight],
-  //     symbol: [user.symbol]
-  //   });
-  // }
+ 
   private setUsersFormArray(user) {
     
     return this.fb.group({
@@ -311,7 +288,7 @@ inputEvent($event, index){
   }
   editCell($event){
     console.log($event)
-  }  
+  }    
   onSubmit() {
     const id = this.actRoute.snapshot.paramMap.get('id');
     //const id = this.TotalmarksList.find(x => x.CLASS_TRNNO == this.cl_trnno && x.EXAM_TRNNO == this.exam_trnno && x.GRPMST_TRNNO == this.grp_trnno && x.MDT == this._mdt).TRNNO;
