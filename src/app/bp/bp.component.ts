@@ -25,6 +25,7 @@ export class BpComponent implements OnInit {
   ngOnInit() {
     this.addBp();
   }
+  showMsg: boolean = false;
   addBp() {
     this.bpForm = this.fb.group({
       bpname: ['', [Validators.required, Validators.minLength(2)]],
@@ -34,8 +35,14 @@ export class BpComponent implements OnInit {
   submitForm() {
     this.bpService.CreateBp(this.bpForm.value).subscribe(res => {
       console.log('Blood Group added!')
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/bp')); 
+      
     });
+    this.showMsg = true;
+  }
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload()
   }
 
 }

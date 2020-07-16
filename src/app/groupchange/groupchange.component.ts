@@ -129,10 +129,17 @@ public onSelect(employee): void {
       this.fun_compareLists();
     })
   }
+  showMsg: boolean = false;
   onSubmitGroupChange(){
     this.groupChangeService.CreateGroupChange(this.groupChangeForm.value).subscribe(res => {
-      console.log('Group  has changed successfully!')
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      console.log('Group has changed successfully!')
+      this.ngZone.run(() => this.router.navigateByUrl('/groupchange'));
+      this.showMsg = true;
     });
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload();
   }
 }

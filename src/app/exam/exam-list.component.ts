@@ -28,12 +28,18 @@ export class ExamListComponent implements OnInit {
   //     console.log('Blood Group deleted!')
   //    })
   // }
+  showMsg: boolean = false;
   deleteExam(data) {
-    const index = this.ExamsList.map(x => x.BPNAME).indexOf(data.BPNAME);
+    const index = this.ExamsList.map(x => x.ETYPE).indexOf(data.ETYPE);
     return this.exmService.deleteExam(data.TRNNO).subscribe(res => {
       this.ExamsList.splice(index, 1)
       console.log('Exam Type is deleted!')
+      this.showMsg = true;
      })
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
   }
 
 }

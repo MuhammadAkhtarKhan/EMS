@@ -28,11 +28,18 @@ export class DeptComponent implements OnInit {
       status: ['']
     });
   }
+  showMsg: boolean = false;
   submitForm() {
     this.deptService.CreateDept(this.deptForm.value).subscribe(res => {
       console.log('Department has added!')
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/dept'));
+      this.showMsg = true;
     });
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload();
   }
 
 }

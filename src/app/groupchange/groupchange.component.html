@@ -1,3 +1,9 @@
+<div *ngIf="showMsg">
+    <p class="alert alert-success">
+        <a href="#" (click)="CloseAlert()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Note: </strong> Record Updated Successfully!.
+    </p>
+</div>
 <form [formGroup]="groupChangeForm"  (ngSubmit)='onSubmitGroupChange()'>
     <div class="container">
         <h2>Change The Group:</h2>

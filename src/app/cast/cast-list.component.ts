@@ -14,6 +14,7 @@ export class CastListComponent implements OnInit {
   ngOnInit() {
     this.loadCasts();
   }
+  showMsg: boolean = false;
   // Issues list
   loadCasts() {
     return this.bpService.GetCasts().subscribe((data: {}) => {
@@ -33,7 +34,12 @@ export class CastListComponent implements OnInit {
     return this.bpService.deleteCast(data.TRNNO).subscribe(res => {
       this.CastsList.splice(index, 1)
       console.log('Cast has deleted!')
+      this.showMsg = true;
      })
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
   }
 
 }

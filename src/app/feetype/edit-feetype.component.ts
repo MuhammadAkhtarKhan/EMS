@@ -43,12 +43,17 @@ this.updateForm();
       TRNNO: ['']
     })
   }
-
+  showMsg: boolean = false;
   submitForm() {
       const id = this.actRoute.snapshot.paramMap.get('id');
       this.feetypeService.UpdateFeeType(id, this.updateFeeTypeForm.value).subscribe(res => {
-      this.ngZone.run(() => this.router.navigateByUrl('/feetype'))
+      this.ngZone.run(() => this.router.navigateByUrl('/feetype/id'))
+      this.showMsg = true;
     })
+  }
+  CloseAlert(){
+    this.showMsg = false;
+    this.ngZone.run(() => this.router.navigateByUrl('/feetype'))
   }
 
 }

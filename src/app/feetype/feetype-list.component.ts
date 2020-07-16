@@ -28,12 +28,18 @@ export class FeetypeListComponent implements OnInit {
   //     console.log('Blood Group deleted!')
   //    })
   // }
+  showMsg: boolean = false;
   deleteFeeType(data) {
     const index = this.FeeTypesList.map(x => x.FTYPE).indexOf(data.FTYPE);
     return this.feetypeService.deleteFeeType(data.TRNNO).subscribe(res => {
       this.FeeTypesList.splice(index, 1)
       console.log('Fee Type has deleted!')
+      this.showMsg = true;
      })
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
   }
 
 }

@@ -27,11 +27,18 @@ export class SubjectComponent implements OnInit {
       scode: ['']
     });
   }
+  showMsg: boolean = false;
   submitForm() {
     this.subService.CreateSubject(this.subForm.value).subscribe(res => {
       console.log('Subject has added!')
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/subject'));
+      this.showMsg = true;
     });
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload();
   }
 
 }

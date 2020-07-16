@@ -27,11 +27,18 @@ export class ClassesComponent implements OnInit {
       CABR: ['']
     });
   }
+  showMsg: boolean = false;
   submitForm() {
     this.clsService.CreateClass(this.clsForm.value).subscribe(res => {
       console.log('Class has added!')
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/classes'));
+      this.showMsg = true;
     });
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload();
   }
 
 }

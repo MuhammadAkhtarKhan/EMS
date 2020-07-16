@@ -24,7 +24,7 @@ export class GroupService {
 
   // POST
   CreateGroup(data): Observable<Group> {
-    return this.http.post<Group>(this.baseurl + '/Group', JSON.stringify(data), this.httpOptions)
+    return this.http.post<Group>(this.baseurl + '/group', JSON.stringify(data), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -33,7 +33,7 @@ export class GroupService {
 
   // GET
   GetGroup(id): Observable<Group> {
-    return this.http.get<Group>(this.baseurl + '/Group/' + id)
+    return this.http.get<Group>(this.baseurl + '/group/' + id)
     .pipe(
       retry(1),
       catchError(this.errorHandl)

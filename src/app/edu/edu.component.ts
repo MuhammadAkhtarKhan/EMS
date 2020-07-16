@@ -32,11 +32,18 @@ export class EduComponent implements OnInit {
       status: ['A']
     });
   }
+  showMsg: boolean = false;
   submitForm() {
     this.eduService.CreateEdu(this.eduForm.value).subscribe(res => {
       console.log('Education has added!')
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/edu'));
+      this.showMsg = true;
     });
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload();
   }
 
 }

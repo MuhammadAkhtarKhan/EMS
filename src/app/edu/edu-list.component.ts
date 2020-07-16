@@ -28,12 +28,18 @@ export class EduListComponent implements OnInit {
   //     console.log('Blood Group deleted!')
   //    })
   // }
+  showMsg: boolean = false;
   deleteEdu(data) {
     const index = this.EdusList.map(x => x.DNAME).indexOf(data.DNAME);
     return this.eduService.deleteEdu(data.TRNNO).subscribe(res => {
       this.EdusList.splice(index, 1)
-      console.log('Blood Group deleted!')
+      console.log('Education deleted!')
+      this.showMsg = true;
      })
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
   }
 
 }

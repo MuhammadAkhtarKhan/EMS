@@ -449,12 +449,19 @@ export class EmpinfoComponent implements OnInit {
         break;
     }
   }
+  showMsg: boolean = false;
   onSubmit(){
     console.log(this.empForm.value);
     this.emService.CreateEm(this.empForm.value).subscribe(res => {
       console.log('Employee is added!');
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/emp'));
+      this.showMsg = true;
     });
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload();
   }
   // get addressesFormGroups() {
   //   return (<FormArray>(<FormGroup>this.empForm.get('EMDTLs')).get('addresses')).controls;

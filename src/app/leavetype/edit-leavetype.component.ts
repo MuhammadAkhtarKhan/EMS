@@ -47,12 +47,18 @@ this.updateForm();
       TRNNO: ['']
     })
   }
-
+  showMsg: boolean = false;
   submitForm() {
       const id = this.actRoute.snapshot.paramMap.get('id');
       this.leavetypeService.UpdateLeaveType(id, this.updateLeaveTypeForm.value).subscribe(res => {
-      this.ngZone.run(() => this.router.navigateByUrl('/leavetype-list'))
+      this.ngZone.run(() => this.router.navigateByUrl('/leavetype/id'))
+      this.showMsg = true;
     })
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    this.ngZone.run(() => this.router.navigateByUrl('/leavetype'))
   }
 
 }

@@ -28,12 +28,17 @@ export class DeptListComponent implements OnInit {
   //     console.log('Blood Group deleted!')
   //    })
   // }
+  showMsg: boolean = false;
   deleteDept(data) {
     const index = this.DeptsList.map(x => x.DESCRIP).indexOf(data.DESCRIP);
     return this.dptService.deleteDept(data.TRNNO).subscribe(res => {
       this.DeptsList.splice(index, 1)
-      console.log('Blood Group deleted!')
+      console.log('Department has deleted!')
+      this.showMsg = true;
      })
+  }
+  CloseAlert(){
+    this.showMsg = false;
   }
 
 }
