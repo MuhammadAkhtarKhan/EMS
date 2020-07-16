@@ -145,14 +145,8 @@ export class EditTotalmarksComponent implements OnInit {
   ngOnInit(): void {
     console.log("ng OnInit() started");
 
-    this.dataSource = this.tmdtlresolver.detail;
-    // this.actRoute.data.forEach(data=>{
-    //   this.dataSource=data.detail;
-    //   console.log(this.dataSource);
-    // })
-
-    // this.getData().then(() =>
-    // this.isDataAvailable = true); // Now has value;
+   // this.dataSource = this.tmdtlresolver.detail;
+   
     this.loadGroups();
     this.loadClasses();
     this.loadExams();
@@ -294,7 +288,7 @@ inputEvent($event, index){
   }
   editCell($event){
     console.log($event)
-  }  
+  }    
   onSubmit() {
     const id = this.actRoute.snapshot.paramMap.get('id');
     //const id = this.TotalmarksList.find(x => x.CLASS_TRNNO == this.cl_trnno && x.EXAM_TRNNO == this.exam_trnno && x.GRPMST_TRNNO == this.grp_trnno && x.MDT == this._mdt).TRNNO;
