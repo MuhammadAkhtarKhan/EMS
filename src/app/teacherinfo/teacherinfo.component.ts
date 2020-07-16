@@ -443,13 +443,21 @@ export class TeacherinfoComponent implements OnInit {
   //   this.myYear.setValue(ctrlValue);
   //   datepicker.close();
   // }
+
+  showMsg: boolean = false;
   onSubmit(){
     console.log(this.empForm.value);
     this.emService.CreateEm(this.empForm.value).subscribe(res => {
       console.log('Teacher is added!');
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/teachinfo'));
+      this.showMsg = true;
     });
   } 
+
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload();
+  }
 
 }
 

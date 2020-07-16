@@ -28,12 +28,19 @@ export class LeavetypeListComponent implements OnInit {
   //     console.log('Blood Group deleted!')
   //    })
   // }
+  showMsg: boolean = false;
   deleteLeaveType(data) {
     const index = this.LeaveTypesList.map(x => x.LDESC).indexOf(data.LDESC);
     return this.leavetypeService.deleteLeaveType(data.TRNNO).subscribe(res => {
       this.LeaveTypesList.splice(index, 1)
       console.log('Leave type has deleted!')
+      this.showMsg = true;
+
      })
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
   }
 
 }

@@ -103,10 +103,18 @@ export class SectionsComponent implements OnInit {
       this.SectionsDetailList = data;
     })
   }
+
+  showMsg: boolean = false;
   onSubmitSection() {
     this.sectionService.CreateSections(this.sectionsForm.value).subscribe(res => {
       console.log('Section/Sections created!');
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/sections'));
+      this.showMsg = true;
     })
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload();
   }
 }

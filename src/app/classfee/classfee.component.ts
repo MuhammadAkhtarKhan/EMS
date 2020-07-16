@@ -98,11 +98,19 @@ return this.clFeedtlService.GetClassFeedtl(id).subscribe((data: {})=>{
       this.ClassFeeList = data;
     })
   }
+
+  showMsg: boolean = false;
   onSubmitClassFee() {
     this.classFeeService.CreateClassFee(this.classFeeForm.value).subscribe(res => {
       console.log('Fees added Successfully!')
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/classfee'));
+      this.showMsg = true;
     });
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload();
   }
   onUpdateClassFee(){
     

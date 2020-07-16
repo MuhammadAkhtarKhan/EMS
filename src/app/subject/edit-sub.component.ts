@@ -40,11 +40,17 @@ this.updateForm();
     // tslint:disable-next-line: semicolon
     })
   }
-
+  showMsg: boolean = false;
   submitForm() {
       const id = this.actRoute.snapshot.paramMap.get('id');
       this.subService.UpdateSubject(id, this.updateSubjectForm.value).subscribe(res => {
-      this.ngZone.run(() => this.router.navigateByUrl('/sub-list'));
+      this.ngZone.run(() => this.router.navigateByUrl('/subject/id'));
+      this.showMsg = true;
     });
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    this.ngZone.run(() => this.router.navigateByUrl('/subject'));
   }
 }

@@ -51,8 +51,8 @@ export class TotalmarkService {
   }
 
   // PUT
-  UpdateTotalMarks(id, data): Observable<any> {
-    return this.http.put<any>(this.baseurl + '/marktotal/' + id, JSON.stringify(data), this.httpOptions)
+  UpdateTotalMarks(id, data): Observable<TotalMarks> {
+    return this.http.put<TotalMarks>(this.baseurl + '/marktotal/' + id, JSON.stringify(data), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)

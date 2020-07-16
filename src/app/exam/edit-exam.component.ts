@@ -44,12 +44,18 @@ this.updateForm();
       TRNNO: ['']
     })
   }
-
+  showMsg: boolean = false;
   submitForm() {
       const id = this.actRoute.snapshot.paramMap.get('id');
       this.examService.UpdateExam(id, this.updateExamForm.value).subscribe(res => {
-      this.ngZone.run(() => this.router.navigateByUrl('/exam-list'))
+      this.ngZone.run(() => this.router.navigateByUrl('/exam/id'))
+      this.showMsg = true;
     })
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    this.ngZone.run(() => this.router.navigateByUrl('/exam'))
   }
 
 }

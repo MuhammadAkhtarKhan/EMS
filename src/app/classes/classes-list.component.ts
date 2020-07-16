@@ -30,12 +30,18 @@ export class ClassesListComponent implements OnInit {
   //     console.log('Blood Group deleted!')
   //    })
   // }
+  showMsg: boolean = false;
   deleteClass(data) {
     const index = this.ClassesList.map(x => x.CNAME).indexOf(data.CNAME);
     return this.clsService.deleteClass(data.TRNNO).subscribe(res => {
       this.ClassesList.splice(index, 1)
       console.log('Class has deleted!')
+      this.showMsg = true;
      })
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
   }
 
 }

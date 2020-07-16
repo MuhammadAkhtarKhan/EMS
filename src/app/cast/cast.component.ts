@@ -26,6 +26,7 @@ export class CastComponent implements OnInit {
   ngOnInit() {
     this.addCast();
   }
+  showMsg: boolean = false;
   addCast() {
     this.cstForm = this.fb.group({
       cdesc: [''],
@@ -35,8 +36,14 @@ export class CastComponent implements OnInit {
   submitForm() {
     this.cstService.CreateCast(this.cstForm.value).subscribe(res => {
       console.log('Cast has  added!')
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/cast'));
+      this.showMsg = true;
     });
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload();
   }
 
 }

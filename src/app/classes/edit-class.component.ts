@@ -39,12 +39,18 @@ this.updateForm();
       TRNNO: ['']
     })
   }
-
+  showMsg: boolean = false;
   submitForm() {
       const id = this.actRoute.snapshot.paramMap.get('id');
       this.classService.UpdateClass(id, this.updateClassForm.value).subscribe(res => {
-      this.ngZone.run(() => this.router.navigateByUrl('/classes-list'))
+      this.ngZone.run(() => this.router.navigateByUrl('/classes/id'))
+      this.showMsg = true;
     })
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    this.ngZone.run(() => this.router.navigateByUrl('/classes'))
   }
 
 }

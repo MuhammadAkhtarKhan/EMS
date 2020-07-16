@@ -134,12 +134,18 @@ export class TotalmarksComponent implements OnInit {
     this.addNewMarksForm.get(`MARKTOTALDTLs.${ix}.SCODE`).setValue(_scode);
     //control.patchValue([{'SCODE':_scode}],{onlySelf:true})
   }
-  
+  showMsg: boolean = false;
   onSubmitMarks(){
     this.totalmarkService.CreateTotalMarks(this.addNewMarksForm.value).subscribe(res => {
       console.log('Your Marks added Successfully!')
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/marktotal'));
+      this.showMsg = true;
     });
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload();
   }
   //#endregion
 

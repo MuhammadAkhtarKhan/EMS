@@ -28,12 +28,18 @@ export class SubListComponent implements OnInit {
   //     console.log('Blood Group deleted!')
   //    })
   // }
+  showMsg: boolean = false;
   deleteSubject(data) {
     const index = this.SubjectsList.map(x => x.SNAME).indexOf(data.SNAME);
     return this.subService.deleteSubject(data.TRNNO).subscribe(res => {
       this.SubjectsList.splice(index, 1)
       console.log('Subject has deleted!')
+      this.showMsg = true;
      })
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
   }
 
 }

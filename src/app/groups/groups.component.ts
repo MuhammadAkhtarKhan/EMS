@@ -86,12 +86,18 @@ export class GroupsComponent implements OnInit {
     // }
     // console.log(this.SubjectsList);
   }
-
+  showMsg: boolean = false;
   onSubmitGroups() {
     this.groupService.CreateGroup(this.createNewGroupForm.value).subscribe(res => {
       console.log('Your have created group Successfully!')
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/group'));
+      this.showMsg = true;
     });
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload();
   }
   //#endregion Add New Group
   ngOnInit(): void {

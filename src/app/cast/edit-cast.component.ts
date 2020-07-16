@@ -43,12 +43,19 @@ this.updateForm();
       TRNNO: ['']
     })
   }
+  showMsg: boolean = false;
 
   submitForm() {
       const id = this.actRoute.snapshot.paramMap.get('id');
       this.cstService.UpdateCast(id, this.updateCastForm.value).subscribe(res => {
-      this.ngZone.run(() => this.router.navigateByUrl('/cast-list'))
+      this.ngZone.run(() => this.router.navigateByUrl('/cast/id'))
+      this.showMsg = true;
     })
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    this.ngZone.run(() => this.router.navigateByUrl('/cast'))
   }
 
 }

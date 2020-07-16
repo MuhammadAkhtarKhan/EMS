@@ -1,3 +1,9 @@
+<div *ngIf="showMsg">
+    <p class="alert alert-success">
+        <a href="#" (click)="CloseAlert()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Note: </strong> Record Added Successfully!.
+    </p>
+</div>
 <form [formGroup]='empForm' (ngSubmit)='onSubmit()'>
 
     <h1>Teacher Information</h1>

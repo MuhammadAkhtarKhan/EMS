@@ -29,13 +29,21 @@ export class LeavetypeComponent implements OnInit {
       STATUS: ['A']
     });
   }
+  showMsg: boolean = false;
   submitForm() {
     this.leavetypeService.CreateLeaveType(this.leavetypeForm.value).subscribe(res => {
       // tslint:disable-next-line: semicolon
       console.log('Leave type has added!')
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/leavetype'));
+      this.showMsg = true;
     });
   }
+
+  
+CloseAlert(){
+  this.showMsg = false;
+  location.reload();
+}
 
 }
 

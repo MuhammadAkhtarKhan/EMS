@@ -38,6 +38,7 @@ export class EditBpComponent implements OnInit {
   ngOnInit() {
 this.updateForm();
   }
+  showMsg: boolean = false;
   updateForm(){
     this.updateBpForm = this.fb.group({
       BPNAME: [''],
@@ -49,8 +50,14 @@ this.updateForm();
   submitForm() {
       const id = this.actRoute.snapshot.paramMap.get('id');
       this.bpService.UpdateBp(id, this.updateBpForm.value).subscribe(res => {
-      this.ngZone.run(() => this.router.navigateByUrl('/bp-list'))
-    })
+      this.ngZone.run(() => this.router.navigateByUrl('/bp/id'))
+      this.showMsg = true;
+    })    
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    this.ngZone.run(() => this.router.navigateByUrl('/bp'))
   }
 
 }

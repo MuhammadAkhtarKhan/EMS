@@ -27,11 +27,19 @@ export class FeetypeComponent implements OnInit {
       status: ['A']
     });
   }
+  showMsg: boolean = false;
+
   submitForm() {
     this.feetypeService.CreateFeeType(this.feetypeForm.value).subscribe(res => {
       console.log('Fee Type has added!')
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/feetype'));
+      this.showMsg = true;
     });
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload();
   }
 
 }

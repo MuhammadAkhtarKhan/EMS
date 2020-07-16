@@ -31,11 +31,19 @@ export class ExamComponent implements OnInit {
       status: ['A']
     });
   }
+
+  showMsg: boolean = false;
   submitForm() {
     this.exmService.CreateExam(this.exmForm.value).subscribe(res => {
       console.log('Exam Type is added!')
-      this.ngZone.run(() => this.router.navigateByUrl('/'));
+      this.ngZone.run(() => this.router.navigateByUrl('/exam'));
+      this.showMsg = true;
     });
+  }
+
+  CloseAlert(){
+    this.showMsg = false;
+    location.reload();
   }
 
 }
