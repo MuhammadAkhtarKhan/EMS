@@ -29,5 +29,19 @@ export class DashboardComponent {
     })
   );
 
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+  }
+  public barChartLabels = ['2007', '2008', '2009','2010', '2011','2012']
+  public barChartType = 'bar';
+  public barChartLegend = true;
+
+  public barChartData=[
+    {data:[65, 59, 80, 81, 56, 55, 40], label: 'Series A'  },
+    {data:[28, 55, 19, 10, 60, 27, 90], label: 'Series B'  }
+  ]
+
   constructor(private breakpointObserver: BreakpointObserver) {}
+
 }
