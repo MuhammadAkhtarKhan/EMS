@@ -29,7 +29,7 @@ export class BpComponent implements OnInit {
   addBp() {
     this.bpForm = this.fb.group({
       bpname: ['', [Validators.required, Validators.minLength(2)]],
-      status: ['A']
+      status: ['A',[Validators.required]]
     });
   }
   submitForm() {

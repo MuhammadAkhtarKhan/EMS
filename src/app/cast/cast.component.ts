@@ -30,7 +30,7 @@ export class CastComponent implements OnInit {
   addCast() {
     this.cstForm = this.fb.group({
       cdesc: ['',[Validators.required]],
-      status: ['A']
+      status: ['A',[Validators.required]]
     });
   }
   submitForm() {
