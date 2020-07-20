@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
+import { ChartsModule } from 'ng2-charts';
 
 import {
   MAT_MOMENT_DATE_FORMATS,
@@ -182,12 +182,13 @@ import { MatButtonModule } from '@angular/material/button';
     MaterialModule,
     LayoutModule,
     CdkStepperModule,
-    Ng2SearchPipeModule,
+    
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
     MatIconModule,
-    MatButtonModule,   
+    MatButtonModule,
+    ChartsModule   
   ],
   providers: [
     UniquePipe,    
