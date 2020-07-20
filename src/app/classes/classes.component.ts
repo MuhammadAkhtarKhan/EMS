@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClassesService } from '../shared/classes.service';
 
@@ -23,8 +23,8 @@ export class ClassesComponent implements OnInit {
   }
   addClass() {
     this.clsForm = this.fb.group({
-      CNAME: [''],
-      CABR: ['']
+      CNAME: ['',[Validators.required]],
+      CABR: ['',[Validators.required]]
     });
   }
   showMsg: boolean = false;

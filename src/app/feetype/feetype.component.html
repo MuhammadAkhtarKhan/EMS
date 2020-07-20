@@ -20,7 +20,7 @@
                     <input class="form-control" formControlName="status"  maxlength="1">
                 </div> -->
                 <div>Angular Generated Form Model : {{feetypeForm.value | json}}</div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" [disabled]='feetypeForm.invalid'>Submit</button>
             </form>
         </div>        
         <div class="col-md-6">

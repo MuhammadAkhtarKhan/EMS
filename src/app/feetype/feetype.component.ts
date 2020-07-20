@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FeeTypeService } from '../shared/feetype.service';
 
@@ -23,7 +23,7 @@ export class FeetypeComponent implements OnInit {
   }
   addFeeType() {
     this.feetypeForm = this.fb.group({
-      ftype: [''],
+      ftype: ['',[Validators.required]],
       status: ['A']
     });
   }

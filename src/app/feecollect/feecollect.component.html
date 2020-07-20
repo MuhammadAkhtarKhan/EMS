@@ -126,7 +126,7 @@
                 <div class="row">
                     <div id="msg" *ngIf="feeCollectForm.invalid? message: ''">{{message}}</div>
                     <div class="col-md-12">
-                        <button type="submit" [disabled]='feeCollectForm.invalid'>Submit</button>
+                        <button type="submit" class="btn btn-primary" [disabled]='feeCollectForm.invalid'>Submit</button>
                         <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
                         <div>Angular Generated Form Model : {{feeCollectForm.value | json}}</div>
                     </div>

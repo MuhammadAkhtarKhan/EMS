@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LeaveTypeService } from '../shared/leavetype.service';
 
@@ -23,9 +23,9 @@ export class LeavetypeComponent implements OnInit {
   }
   addLeaveType() {
     this.leavetypeForm = this.fb.group({
-      LDESC: [''],
-      LABRV: [''],
-      LWEIGHT: [''],
+      LDESC: ['',[Validators.required]],
+      LABRV: ['',[Validators.required]],
+      LWEIGHT: ['',[Validators.required]],
       STATUS: ['A']
     });
   }

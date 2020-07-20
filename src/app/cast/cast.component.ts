@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CastService } from '../shared/cast.service';
 import { statusType } from '../shared/Interfaces/status';
@@ -29,7 +29,7 @@ export class CastComponent implements OnInit {
   showMsg: boolean = false;
   addCast() {
     this.cstForm = this.fb.group({
-      cdesc: [''],
+      cdesc: ['',[Validators.required]],
       status: ['A']
     });
   }

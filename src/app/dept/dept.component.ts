@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DeptService } from '../shared/dept.service';
 
@@ -23,9 +23,9 @@ export class DeptComponent implements OnInit {
   }
   addDept() {
     this.deptForm = this.fb.group({
-      descrip: [''],
-      abr: [''],
-      status: ['']
+      descrip: ['',[Validators.required]],
+      abr: ['',[Validators.required]],
+      status: ['A']
     });
   }
   showMsg: boolean = false;

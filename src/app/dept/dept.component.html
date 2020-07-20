@@ -19,7 +19,7 @@
                     <label>Department Name</label>
                     <input class="form-control" formControlName="descrip"  maxlength="50">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" [disabled]='deptForm.invalid'>Submit</button>
             </form>
         </div>
         <div class="col-md-6">

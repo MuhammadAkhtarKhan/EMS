@@ -40,7 +40,7 @@
                 </div>
                 <div class="row">
                     <div>
-                        <button type="button" mat-button (click)='addNewSuject()'>Add New Subject</button>
+                        <button type="button" mat-button [disabled]='createNewGroupForm.invalid' (click)='addNewSuject()'>Add New Subject</button>
                     </div>
                 </div>
                 <div formArrayName="GRPDTLs">
@@ -80,7 +80,7 @@
                 <div class="row">
                     <div id="msg" *ngIf="createNewGroupForm.invalid? message: ''" style="color: brown;">{{message}}</div>
                     <div class="col-md-12">
-                        <button type="submit" [disabled]='createNewGroupForm.invalid'>Submit</button>
+                        <button type="submit" class="btn btn-primary" [disabled]='createNewGroupForm.invalid'>Submit</button>
                         <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
                         <div>Angular Generated Form Model : {{createNewGroupForm.value | json}}</div>
                     </div>

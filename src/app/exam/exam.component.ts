@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ExamService } from '../shared/exam.service';
 import { statusType } from '../shared/Interfaces/status';
@@ -27,7 +27,7 @@ export class ExamComponent implements OnInit {
   }
   addExam() {
     this.exmForm = this.fb.group({
-      etype: [''],
+      etype: ['',[Validators.required]],
       status: ['A']
     });
   }
