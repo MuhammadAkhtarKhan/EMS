@@ -26,8 +26,10 @@
                             <td>{{subs.SNAME}}</td>
                             <td>{{subs.SCODE}}</td>
                             <td>
-                                <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/subject/', subs.TRNNO]">Edit</button>
-                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteSubject(subs)">Remove</button>
+                                <button mat-icon-button title="edit subject" [routerLink]="['/subject/', subs.TRNNO]"><mat-icon>edit</mat-icon></button>
+                                <button mat-icon-button title="delete subject" (click)="deleteSubject(subs)"><mat-icon>delete</mat-icon></button>
+                                <!-- <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/subject/', subs.TRNNO]">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteSubject(subs)">Remove</button> -->
                             </td>
                         </tr>
                     </tbody>
