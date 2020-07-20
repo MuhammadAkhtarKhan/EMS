@@ -24,8 +24,10 @@
                             <td>{{cst.CDESC}}</td>
                             <td>{{cst.STATUS=='A'? 'Active': 'De Active'}}</td>
                             <td>
-                                <button mat-button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/cast/', cst.TRNNO]">Edit</button>
-                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteCast(cst)">Remove</button>
+                                <button mat-icon-button title="edit cast" [routerLink]="['/cast/', cst.TRNNO]"><mat-icon>edit</mat-icon></button>
+                                <button mat-icon-button title="delete cast" (click)="deleteCast(cst)"><mat-icon>delete</mat-icon></button>
+                                <!-- <button mat-button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/cast/', cst.TRNNO]">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteCast(cst)">Remove</button> -->
                             </td>
                         </tr>
                     </tbody>
