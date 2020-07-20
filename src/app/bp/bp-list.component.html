@@ -25,8 +25,10 @@
                             <td>{{bps.BPNAME}}</td>
                             <td>{{bps.STATUS=='A'? 'Active': 'De Active'}}</td>
                             <td>
-                                <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/bp/', bps.TRNNO]">Edit</button>
-                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteBp(bps)">Remove</button>
+                                <button mat-icon-button title="edit bp" [routerLink]="['/bp/', bps.TRNNO]"><mat-icon>edit</mat-icon></button>
+                                <button mat-icon-button title="delete bp" (click)="deleteBp(bps)"><mat-icon>delete</mat-icon></button>
+                                <!-- <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/bp/', bps.TRNNO]">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteBp(bps)">Remove</button> -->
                             </td>
                         </tr>
                     </tbody>
