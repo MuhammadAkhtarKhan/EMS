@@ -56,9 +56,10 @@
         (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon id="idMenu" aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>        
+      </button>    
      
-        <span>EMS</span>
+        <span>EMS</span>&nbsp;&nbsp;
+        <span> <a  [routerLink]="['/dashboard/']">Dashboard</a></span>
         <span class="example-spacer"></span>
         <div *ngIf="!user">         
           <span><a [routerLink]="['/login']"(click)="login()" >Login</a></span>

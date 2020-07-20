@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
+
 import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
@@ -99,6 +100,12 @@ import { AuthGuard } from './shared/auth.guard';
 import { AuthService } from './shared/auth.service';
 import { LoginComponent } from './login/login.component';
 import { TokenizedInterceptor } from './Tokenized-Interceptor';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -161,6 +168,7 @@ import { TokenizedInterceptor } from './Tokenized-Interceptor';
     PromotionComponent,
     LschoolComponent,
     LoginComponent,
+    DashboardComponent,
     
   ],
   imports: [    
@@ -174,7 +182,12 @@ import { TokenizedInterceptor } from './Tokenized-Interceptor';
     MaterialModule,
     LayoutModule,
     CdkStepperModule,
-    Ng2SearchPipeModule,   
+    Ng2SearchPipeModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,   
   ],
   providers: [
     UniquePipe,    
