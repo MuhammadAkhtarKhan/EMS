@@ -8,3 +8,6 @@ mat-form-field {
   mat-icon{
     color: #007bff;
   }
+  h3,h2,h1{
+    color: blue;
+  }
