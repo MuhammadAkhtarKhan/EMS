@@ -26,8 +26,10 @@
                             <td>{{cls.CNAME}}</td>
                             <td>{{cls.CABR}}</td>
                             <td>
-                                <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/classes/', cls.TRNNO]">Edit</button>
-                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteClass(cls)">Remove</button>
+                                <button mat-icon-button title="edit classes" [routerLink]="['/classes/', cls.TRNNO]"><mat-icon>edit</mat-icon></button>
+                                <button mat-icon-button title="delete classes" (click)="deleteClass(cls)"><mat-icon>delete</mat-icon></button>
+                                <!-- <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/classes/', cls.TRNNO]">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteClass(cls)">Remove</button> -->
                             </td>
                         </tr>
                     </tbody>

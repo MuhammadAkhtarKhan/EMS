@@ -28,8 +28,10 @@
                             <td>{{edus.DABRV}}</td>
                             <td>{{edus.STATUS=='A'? 'Active': 'De Active'}}</td>
                             <td>
-                                <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/edu/', edus.TRNNO]">Edit</button>
-                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteEdu(edus)">Remove</button>
+                                <button mat-icon-button title="edit edu" [routerLink]="['/edu/', edus.TRNNO]"><mat-icon>edit</mat-icon></button>
+                                <button mat-icon-button title="delete edu" (click)="deleteEdu(edus)"><mat-icon>delete</mat-icon></button>
+                                <!-- <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/edu/', edus.TRNNO]">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteEdu(edus)">Remove</button> -->
                             </td>
                         </tr>
                     </tbody>

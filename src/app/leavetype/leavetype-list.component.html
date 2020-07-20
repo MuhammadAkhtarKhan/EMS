@@ -30,8 +30,10 @@
                             <td>{{leavetype.LWEIGHT}}</td>
                             <td>{{leavetype.STATUS=='A'? 'Active': 'De Active'}}</td>
                             <td>
-                                <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/leavetype/', leavetype.TRNNO]">Edit</button>
-                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteLeaveType(leavetype)">Remove</button>
+                                <button mat-icon-button title="edit leavetype" [routerLink]="['/leavetype/', leavetype.TRNNO]"><mat-icon>edit</mat-icon></button>
+                                <button mat-icon-button title="delete leavetype" (click)="deleteLeaveType(leavetype)"><mat-icon>delete</mat-icon></button>
+                                <!-- <button type="button" class="btn btn-success btn-sm move-right" [routerLink]="['/leavetype/', leavetype.TRNNO]">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm" (click)="deleteLeaveType(leavetype)">Remove</button> -->
                             </td>
                         </tr>
                     </tbody>
