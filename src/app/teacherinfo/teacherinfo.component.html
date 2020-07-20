@@ -5,243 +5,243 @@
     </p>
 </div>
 <form [formGroup]='empForm' (ngSubmit)='onSubmit()'>
-
-    <h1>Teacher Information</h1>
-    <mat-horizontal-stepper>
-        <mat-step label="General Information" state="info">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div hidden='true'>
-                            <mat-form-field>
-                                <mat-label>Computer Code </mat-label>
-                                <input matInput type="text" disabled='false' [(ngModel)]='TRNNO'
-                                    formControlName='TRNNO'>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field hintLabel="Max 50 characters" appearance="standard">
-                                <mat-label>Teacher Name</mat-label>
-                                <input matInput #input maxlength="50" placeholder="Please enter name"
-                                    oninput="this.value = this.value.toUpperCase()" formControlName='EMP_NAME'>
-                                <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <mat-label>Father Name </mat-label>
-                                <input matInput type="text" oninput="this.value = this.value.toUpperCase()"
-                                    formControlName='EMP_F_NAME'>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <mat-label>CNIC </mat-label>
-                                <input matInput type="text" formControlName='CNIC'>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <mat-label>Date Of Birth </mat-label>
-                                <input matInput [matDatepicker]='myDatePickerDOB' disabled=true [max]='startDate'
-                                    formControlName='DOB'>
-                                <mat-datepicker-toggle matSuffix [for]='myDatePickerDOB' disabled=false>
-                                </mat-datepicker-toggle>
-                                <mat-datepicker #myDatePickerDOB disabled=false touchUi [startAt]="startDate">
-                                </mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <mat-label>Blood Group </mat-label>
-                                <mat-select formControlName='BP_TRNNO'>
-                                    <mat-option>--</mat-option>
-                                    <mat-option *ngFor="let bp of BpsList" [value]="bp.TRNNO">
-                                        {{bp.BPNAME}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div>
-                            <mat-form-field>
-                                <mat-label>Cast </mat-label>
-                                <mat-select formControlName='CST_TRNNO'>
-                                    <mat-option>--</mat-option>
-                                    <mat-option *ngFor="let cast of CastsList" [value]="cast.TRNNO">
-                                        {{cast.CDESC}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <label>Gender :</label>
-                            <mat-radio-group name='SEX' labelPosition='before' formControlName='SEX'>
-                                <mat-radio-button value='1'> Male</mat-radio-button>
-                                <mat-radio-button value='0'> Female</mat-radio-button>
-                            </mat-radio-group>
-                        </div>
-
-                        <div>
-                            <mat-form-field>
-                                <mat-label>Salary </mat-label>
-                                <input matInput type="NUMBER" formControlName='BSAL'>
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <mat-form-field>
-                                <mat-label>Email </mat-label>
-                                <input matInput type="email" formControlName='EMAIL'>
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div>
-                        <button type="button" mat-button matStepperNext>Next</button>
-                    </div>
-                </div>
-            </div>
-        </mat-step>
-        <mat-step label="Address" state="home">
-            <div class="container">
-                <div>
-                    <button type="button" mat-button (click)='addNewAddress()'>Add Address</button>
-                </div>
-
-                <div formArrayName="EMDTLs">
-                    <div *ngFor="let X of empForm['controls'].EMDTLs['controls']; let ix=index">
-                        <div formGroupName="{{ix}}" class="EMDTLs">
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <mat-form-field>
-                                        <mat-label>Address</mat-label>
-                                        <textarea matInput type="text" placeholder="EX. P 41 ST#2 AMIN TOWN FSD"
-                                            formControlName="ADDDESC"></textarea>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-4">
-                                    <mat-form-field>
-                                        <mat-label>Address Type</mat-label>
-                                        <mat-select formControlName="ADDTYPE">
-                                            <mat-option>--</mat-option>
-                                            <mat-option *ngFor="let add of AddtypeList" [value]="add.type">
-                                                {{add.name}}
-                                            </mat-option>
-                                        </mat-select>
-                                        <!-- <input matInput type="text" formControlName="ADDTYPE"> -->
-                                    </mat-form-field>
-                                </div>
-                                <button mat-icon-button title="delete address" color="warn" (click)="deleteRow(ix)"
-                                    *ngIf="empForm['controls'].EMDTLs['controls'].length > 1">
-                                    <mat-icon>close</mat-icon>
-                                </button>
+    <div class="container">
+        <h1>Teacher Information</h1>
+        <mat-horizontal-stepper>
+            <mat-step label="General Information" state="info">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div hidden='true'>
+                                <mat-form-field>
+                                    <mat-label>Computer Code </mat-label>
+                                    <input matInput type="text" disabled='false' [(ngModel)]='TRNNO'
+                                        formControlName='TRNNO'>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field hintLabel="Max 50 characters" appearance="standard">
+                                    <mat-label>Teacher Name</mat-label>
+                                    <input matInput #input maxlength="50" placeholder="Please enter name"
+                                        oninput="this.value = this.value.toUpperCase()" formControlName='EMP_NAME'>
+                                    <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field>
+                                    <mat-label>Father Name </mat-label>
+                                    <input matInput type="text" oninput="this.value = this.value.toUpperCase()"
+                                        formControlName='EMP_F_NAME'>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field>
+                                    <mat-label>CNIC </mat-label>
+                                    <input matInput type="text" formControlName='CNIC'>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field>
+                                    <mat-label>Date Of Birth </mat-label>
+                                    <input matInput [matDatepicker]='myDatePickerDOB' disabled=true [max]='startDate'
+                                        formControlName='DOB'>
+                                    <mat-datepicker-toggle matSuffix [for]='myDatePickerDOB' disabled=false>
+                                    </mat-datepicker-toggle>
+                                    <mat-datepicker #myDatePickerDOB disabled=false touchUi [startAt]="startDate">
+                                    </mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field>
+                                    <mat-label>Blood Group </mat-label>
+                                    <mat-select formControlName='BP_TRNNO'>
+                                        <mat-option>--</mat-option>
+                                        <mat-option *ngFor="let bp of BpsList" [value]="bp.TRNNO">
+                                            {{bp.BPNAME}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
                             </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div>
+                                <mat-form-field>
+                                    <mat-label>Cast </mat-label>
+                                    <mat-select formControlName='CST_TRNNO'>
+                                        <mat-option>--</mat-option>
+                                        <mat-option *ngFor="let cast of CastsList" [value]="cast.TRNNO">
+                                            {{cast.CDESC}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <label>Gender :</label>
+                                <mat-radio-group name='SEX' labelPosition='before' formControlName='SEX'>
+                                    <mat-radio-button value='1'> Male</mat-radio-button>
+                                    <mat-radio-button value='0'> Female</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+
+                            <div>
+                                <mat-form-field>
+                                    <mat-label>Salary </mat-label>
+                                    <input matInput type="NUMBER" formControlName='BSAL'>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field>
+                                    <mat-label>Email </mat-label>
+                                    <input matInput type="email" formControlName='EMAIL'>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type="button" mat-button matStepperNext>Next</button>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xl-12">
-                        <button type="button" mat-button matStepperPrevious>Back</button>
-                        <button type="button" mat-button matStepperNext>Next</button>
+            </mat-step>
+            <mat-step label="Address" state="home">
+                <div class="container">
+                    <div>
+                        <button type="button" mat-button (click)='addNewAddress()'>Add Address</button>
                     </div>
-                </div>
-            </div>
-        </mat-step>
-        <mat-step label="Phones" state='phone'>
-            <div class="container">
-                <div>
-                    <button mat-button type="button" (click)='addNewPhone()'>Add New Phone</button>
-                </div>
-                <div formArrayName="EMDTL1">
-                    <div *ngFor="let X of empForm['controls'].EMDTL1['controls']; let p=index">
-                        <div formGroupName="{{p}}" class="EMDTL1">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <mat-form-field>
-                                        <mat-label>Phone</mat-label>
-                                        <input matInput type="number" formControlName="PHNO">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-4">
-                                    <mat-form-field>
-                                        <mat-label>Phone Type</mat-label>
-                                        <mat-select formControlName="PHTYPE">
-                                            <mat-option>--</mat-option>
-                                            <mat-option *ngFor="let ph of phoneTypeList" [value]="ph.type">
-                                                {{ph.name}}
-                                            </mat-option>
-                                        </mat-select>
-                                        <!-- <input matInput type="text" formControlName="ADDTYPE"> -->
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-3">
-                                    <mat-form-field>
-                                        <mat-label>Relation Type</mat-label>
-                                        <mat-select formControlName="RELTION">
-                                            <mat-option>--</mat-option>
-                                            <mat-option *ngFor="let rel of relationtypeList" [value]="rel.id">
-                                                {{rel.name}}
-                                            </mat-option>
-                                        </mat-select>
-                                        <!-- <input matInput type="text" formControlName="ADDTYPE"> -->
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-1">
-                                    <button type="button" mat-icon-button title="delete phone" color="warn"
-                                        (click)="deletePhone(p)"
-                                        *ngIf="empForm['controls'].EMDTL1['controls'].length > 1">
+
+                    <div formArrayName="EMDTLs">
+                        <div *ngFor="let X of empForm['controls'].EMDTLs['controls']; let ix=index">
+                            <div formGroupName="{{ix}}" class="EMDTLs">
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <mat-form-field>
+                                            <mat-label>Address</mat-label>
+                                            <textarea matInput type="text" placeholder="EX. P 41 ST#2 AMIN TOWN FSD"
+                                                formControlName="ADDDESC"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <mat-form-field>
+                                            <mat-label>Address Type</mat-label>
+                                            <mat-select formControlName="ADDTYPE">
+                                                <mat-option>--</mat-option>
+                                                <mat-option *ngFor="let add of AddtypeList" [value]="add.type">
+                                                    {{add.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                            <!-- <input matInput type="text" formControlName="ADDTYPE"> -->
+                                        </mat-form-field>
+                                    </div>
+                                    <button mat-icon-button title="delete address" color="warn" (click)="deleteRow(ix)"
+                                        *ngIf="empForm['controls'].EMDTLs['controls'].length > 1">
                                         <mat-icon>close</mat-icon>
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md">
-                        <button type="button" mat-button matStepperPrevious>Back</button>
-                        <button type="button" mat-button matStepperNext>Next</button>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <button type="button" mat-button matStepperPrevious>Back</button>
+                            <button type="button" mat-button matStepperNext>Next</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </mat-step>
-        <mat-step label="Education" state='education'>
-            <div class="container">
-                <div>
-                    <button mat-button type="button" (click)='addNewEducation()'>Add New Education</button>
+            </mat-step>
+            <mat-step label="Phones" state='phone'>
+                <div class="container">
+                    <div>
+                        <button mat-button type="button" (click)='addNewPhone()'>Add New Phone</button>
+                    </div>
+                    <div formArrayName="EMDTL1">
+                        <div *ngFor="let X of empForm['controls'].EMDTL1['controls']; let p=index">
+                            <div formGroupName="{{p}}" class="EMDTL1">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <mat-form-field>
+                                            <mat-label>Phone</mat-label>
+                                            <input matInput type="number" formControlName="PHNO">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <mat-form-field>
+                                            <mat-label>Phone Type</mat-label>
+                                            <mat-select formControlName="PHTYPE">
+                                                <mat-option>--</mat-option>
+                                                <mat-option *ngFor="let ph of phoneTypeList" [value]="ph.type">
+                                                    {{ph.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                            <!-- <input matInput type="text" formControlName="ADDTYPE"> -->
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <mat-form-field>
+                                            <mat-label>Relation Type</mat-label>
+                                            <mat-select formControlName="RELTION">
+                                                <mat-option>--</mat-option>
+                                                <mat-option *ngFor="let rel of relationtypeList" [value]="rel.id">
+                                                    {{rel.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                            <!-- <input matInput type="text" formControlName="ADDTYPE"> -->
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <button type="button" mat-icon-button title="delete phone" color="warn"
+                                            (click)="deletePhone(p)"
+                                            *ngIf="empForm['controls'].EMDTL1['controls'].length > 1">
+                                            <mat-icon>close</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <button type="button" mat-button matStepperPrevious>Back</button>
+                            <button type="button" mat-button matStepperNext>Next</button>
+                        </div>
+                    </div>
                 </div>
+            </mat-step>
+            <mat-step label="Education" state='education'>
+                <div class="container">
+                    <div>
+                        <button mat-button type="button" (click)='addNewEducation()'>Add New Education</button>
+                    </div>
 
-                <div formArrayName="EMDTL2">
-                    <div *ngFor="let X of empForm['controls'].EMDTL2['controls']; let e=index">
-                        <div formGroupName="{{e}}" class="EMDTL2">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <mat-form-field>
-                                        <mat-label>Education</mat-label>
-                                        <mat-select formControlName="EDU_TRNNO">
-                                            <mat-option>--</mat-option>
-                                            <mat-option *ngFor="let edu of EducationsList" [value]="edu.TRNNO">
-                                                {{edu.DNAME}} -- {{edu.DABRV}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-3">
-                                    <mat-form-field hintLabel="Max 2 characters" >
-                                        <mat-label>Grade</mat-label>
-                                        <input matInput #input maxlength="2" placeholder="Please enter grade like A"
-                                            oninput="this.value = this.value.toUpperCase()" formControlName="GRD">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-3" >
-                                    <mat-form-field hintLabel="Max 2 Numbers">
-                                        <mat-label>% age</mat-label>
-                                        <input matInput #input maxlength="2" formControlName="PERCENT">
-                                    </mat-form-field>
-                                </div>
-                                <!-- <mat-form-field>
+                    <div formArrayName="EMDTL2">
+                        <div *ngFor="let X of empForm['controls'].EMDTL2['controls']; let e=index">
+                            <div formGroupName="{{e}}" class="EMDTL2">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <mat-form-field>
+                                            <mat-label>Education</mat-label>
+                                            <mat-select formControlName="EDU_TRNNO">
+                                                <mat-option>--</mat-option>
+                                                <mat-option *ngFor="let edu of EducationsList" [value]="edu.TRNNO">
+                                                    {{edu.DNAME}} -- {{edu.DABRV}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <mat-form-field hintLabel="Max 2 characters">
+                                            <mat-label>Grade</mat-label>
+                                            <input matInput #input maxlength="2" placeholder="Please enter grade like A"
+                                                oninput="this.value = this.value.toUpperCase()" formControlName="GRD">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <mat-form-field hintLabel="Max 2 Numbers">
+                                            <mat-label>% age</mat-label>
+                                            <input matInput #input maxlength="2" formControlName="PERCENT">
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- <mat-form-field>
                                                     <mat-label>Year  </mat-label>
                                                     <input matInput [matDatepicker]='myDatePickerYEAR'                            
                                                     disabled=false [max]='startYear'
@@ -255,7 +255,7 @@
                                                     touchUi [startAt]="startDate">
                                                     </mat-datepicker>
                                                 </mat-form-field> -->
-                                <!-- <mat-form-field>
+                                    <!-- <mat-form-field>
                                                     <mat-label>Month and Year</mat-label>
                                                     <input matInput [matDatepicker]="dp" [formControl]="myYear">
                                                     <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
@@ -266,10 +266,10 @@
                                                                     panelClass="example-month-picker">
                                                     </mat-datepicker>
                                                   </mat-form-field> -->
-                                <!-- [matDatepickerFilter]='datefilter' -->
-                                <!-- (dateChange)="autocomplete.value = toFormattedDate($event.value)" -->
-                                <div class="col-sm-2">
-                                    <!-- <mat-form-field>
+                                    <!-- [matDatepickerFilter]='datefilter' -->
+                                    <!-- (dateChange)="autocomplete.value = toFormattedDate($event.value)" -->
+                                    <div class="col-sm-2">
+                                        <!-- <mat-form-field>
                                         <mat-label>Year </mat-label>
                                         <input type="number" matInput #autocomplete placeholder="Choose a date"
                                             formControlName="YEAR">
@@ -280,7 +280,7 @@
                                             (yearSelected)="chosenYearHandler($event, myDatePicker, e )">
                                         </mat-datepicker>
                                     </mat-form-field> -->
-                                    <!-- <mat-form-field>
+                                        <!-- <mat-form-field>
                                         <mat-label>Year</mat-label>
                                         <input matInput [matDatepicker]='myDatePicker' formControlName="YEAR">
                                         <mat-datepicker-toggle matSuffix [for]='myDatePicker'></mat-datepicker-toggle>
@@ -289,46 +289,48 @@
                                         startView="multi-year">
                                         </mat-datepicker>
                                     </mat-form-field> -->
-                                    <mat-form-field>
-                                        <mat-label>Year</mat-label>
-                                        <input matInput type="number" placeholder="EX. 2001" maxlength="5" formControlName="YEAR">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-1">
-                                    <button type="button" mat-icon-button title="delete education" color="warn"
-                                        (click)="deleteEducation(e)"
-                                        *ngIf="empForm['controls'].EMDTL2['controls'].length > 1">
-                                        <mat-icon>close</mat-icon>
-                                    </button>
+                                        <mat-form-field>
+                                            <mat-label>Year</mat-label>
+                                            <input matInput type="number" placeholder="EX. 2001" maxlength="5"
+                                                formControlName="YEAR">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <button type="button" mat-icon-button title="delete education" color="warn"
+                                            (click)="deleteEducation(e)"
+                                            *ngIf="empForm['controls'].EMDTL2['controls'].length > 1">
+                                            <mat-icon>close</mat-icon>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <button type="button" mat-button matStepperPrevious>Back</button>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" mat-button matStepperPrevious>Back</button>
+                        </div>
                     </div>
+                    <p>You're welcome.</p>
                 </div>
-                <p>You're welcome.</p>
-            </div>
-        </mat-step>
+            </mat-step>
 
-        <!-- Icon overrides. -->
-        <ng-template matStepperIcon="phone">
-            <mat-icon>contact_phone</mat-icon>
-        </ng-template>
-        <ng-template matStepperIcon="info">
-            <mat-icon>info</mat-icon>
-        </ng-template>
-        <ng-template matStepperIcon="education">
-            <mat-icon>school</mat-icon>
-        </ng-template>
-        <ng-template matStepperIcon="home">
-            <mat-icon>home</mat-icon>
-        </ng-template>
-    </mat-horizontal-stepper>
-    <button type="submit" [disabled]='empForm.invalid'>Submit</button>
-    <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
-    <div>Angular Generated Form Model : {{empForm.value | json}}</div>
+            <!-- Icon overrides. -->
+            <ng-template matStepperIcon="phone">
+                <mat-icon>contact_phone</mat-icon>
+            </ng-template>
+            <ng-template matStepperIcon="info">
+                <mat-icon>info</mat-icon>
+            </ng-template>
+            <ng-template matStepperIcon="education">
+                <mat-icon>school</mat-icon>
+            </ng-template>
+            <ng-template matStepperIcon="home">
+                <mat-icon>home</mat-icon>
+            </ng-template>
+        </mat-horizontal-stepper>
+        <button type="submit" class="btn btn-primary" [disabled]='empForm.invalid'>Submit</button>
+        <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
+        <div>Angular Generated Form Model : {{empForm.value | json}}</div>
+    </div>
 </form>

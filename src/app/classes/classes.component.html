@@ -19,7 +19,7 @@
                     <label>Class Abbreviation</label>
                     <input class="form-control" formControlName="CABR"  maxlength="5">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" [disabled]='clsForm.invalid'>Submit</button>
             </form>
             Angular Generated Form Model : {{clsForm.value | json}}
         </div>

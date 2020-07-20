@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ClassesService } from '../shared/classes.service';
 
 @Component({
@@ -16,8 +16,8 @@ export class LschoolComponent implements OnInit {
     private classService: ClassesService
     ) { 
    this.LSchoolForm= this.fb.group({
-'LDATE':[''],
-'CLASS_TRNNO': []
+'LDATE':['',[Validators.required]],
+'CLASS_TRNNO': ['',[Validators.required]]
     })
   }
  

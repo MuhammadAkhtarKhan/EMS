@@ -30,7 +30,7 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" [disabled]='cstForm.invalid'>Submit</button>
             </form>
             Angular Generated Form Model : {{cstForm.value | json}}
         </div>

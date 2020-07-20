@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SubjectService } from '../shared/subject.service';
 
@@ -23,8 +23,8 @@ export class SubjectComponent implements OnInit {
   }
   addSubject() {
     this.subForm = this.fb.group({
-      sname: [''],
-      scode: ['']
+      sname: ['',[Validators.required]],
+      scode: ['',[Validators.required]]
     });
   }
   showMsg: boolean = false;

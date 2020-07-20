@@ -19,7 +19,7 @@
                     <label>Subject Code</label>
                     <input class="form-control" formControlName="scode"  maxlength="10">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" [disabled]='subForm.invalid'>Submit</button>
             </form>
             Angular Generated Form Model : {{subForm.value | json}}
         </div>

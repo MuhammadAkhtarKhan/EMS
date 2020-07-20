@@ -23,7 +23,7 @@
         <hr>
         <div class="row">
             <div>
-                <button type="button" mat-button (click)='addNewSection()'>Add New Section</button>
+                <button type="button" mat-button [disabled]='sectionsForm.invalid' (click)='addNewSection()'>Add New Section</button>
             </div>
         </div>
         <div formArrayName="SECDTLs">
@@ -59,7 +59,7 @@
         </div>
         <div class="row">            
             <div class="col-md-12">
-                <button  mat-button type="submit" [disabled]='sectionsForm.invalid'>Submit</button>
+                <button  class="btn btn-primary" type="submit" [disabled]='sectionsForm.invalid'>Submit</button>
                 <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
                 <div>Angular Generated Form Model : {{sectionsForm.value | json}}</div>
             </div>

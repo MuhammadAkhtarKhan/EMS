@@ -42,8 +42,8 @@ export class PromotionComponent implements OnInit {
     GRPMST_TRNNO: ['', [Validators.required]],
     CLASS_TRNNO: ['', [Validators.required]],    
     FCLASS_TRNNO: ['', [Validators.required]],
-    SECDTL_TRNNO: [''],
-    SECDTL_SR: [''],
+    SECDTL_TRNNO: ['',[Validators.required]],
+    SECDTL_SR: ['',[Validators.required]],
    
   });
   ngOnInit(): void {

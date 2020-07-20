@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EduService } from '../shared/edu.service';
 import { statusType } from '../shared/Interfaces/status';
@@ -27,8 +27,8 @@ export class EduComponent implements OnInit {
   }
   addEdu() {
     this.eduForm = this.fb.group({
-      dname: [''],
-      dabrv: [''],
+      dname: ['',[Validators.required]],
+      dabrv: ['',[Validators.required]],
       status: ['A']
     });
   }
