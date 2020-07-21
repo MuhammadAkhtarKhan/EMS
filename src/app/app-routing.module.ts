@@ -97,7 +97,7 @@ const routes: Routes = [
     { path: 'groupchange', component: GroupchangeComponent, canActivate:[AuthGuard] },
     { path: 'promotion', component: PromotionComponent, canActivate:[AuthGuard] },
     { path: 'lschool', component: LschoolComponent, canActivate:[AuthGuard] },
-    { path: 'dashboard', component: DashboardComponent},
+    { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
     { path: 'login', component: LoginComponent},   
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent },
