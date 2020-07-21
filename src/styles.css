@@ -11,3 +11,13 @@ mat-form-field {
   h3,h2,h1{
     color: blue;
   }
+  a{
+    color: white;
+  }
+  a:hover{
+    color: white;
+    background:darkblue;
+    text-decoration: none;
+  }
+  
+
