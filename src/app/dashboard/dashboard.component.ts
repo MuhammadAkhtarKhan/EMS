@@ -29,6 +29,7 @@ export class DashboardComponent {
     })
   );
 
+  // bar chart
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true,
@@ -39,8 +40,24 @@ export class DashboardComponent {
 
   public barChartData=[
     {data:[65, 59, 80, 81, 56, 55, 40], label: 'Series A'  },
-    {data:[28, 55, 19, 10, 60, 27, 90], label: 'Series B'  }
+    {data:[28, 55, 19, 30, 60, 27, 90], label: 'Series B'  }
   ]
+
+  //#region  pie chart
+ // Pie
+ public pieChartLabels:string[] = ['Chrome', 'Safari', 'Firefox','Internet Explorer','Other'];
+ public pieChartData:number[] = [40, 20, 20 , 10,10];
+ public pieChartType:string = 'pie';
+
+ // events
+ public chartClicked(e:any):void {
+   console.log(e);
+ }
+
+ public chartHovered(e:any):void {
+   console.log(e);
+ }
+  //#endregion
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
