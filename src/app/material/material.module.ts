@@ -19,6 +19,7 @@ import {CdkTableModule} from '@angular/cdk/table';
 
 import { MatListModule } from '@angular/material/list';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 const Material = [
@@ -40,7 +41,8 @@ const Material = [
   MatTableModule,
   CdkTableModule,
   MatListModule,
-  MatMomentDateModule
+  MatMomentDateModule,
+  MatCheckboxModule
 ];
 @NgModule({
   imports: [Material],

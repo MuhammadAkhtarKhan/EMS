@@ -16,7 +16,9 @@
             <div class="col-md-6">
                 <mat-form-field>
                     <mat-label>Select Class</mat-label>
-                    <mat-select formControlName="CLASS_TRNNO">
+                    <mat-select formControlName="CLASS_TRNNO"
+                    (selectionChange)='classSelectionChange($event)'
+                    >
                         <mat-option>--</mat-option>
                         <mat-option *ngFor="let cls of classList" [value]="cls.TRNNO">
                             {{cls.CNAME}}
@@ -24,14 +26,87 @@
                     </mat-select>
                 </mat-form-field>
             </div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <mat-label>Select Group</mat-label>
+                    <mat-select formControlName="GRPMST_TRNNO"
+                    (selectionChange)='groupSelectionChange($event)' >
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let gp of groupsList" [value]="gp.TRNNO">
+                            {{gp.GRPNAME}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
         </div>
 
-        <div class="row">
-            <!-- <div id="msg" *ngIf="LSchoolForm.invalid? message: ''">{{message}}</div> -->
+        <div class="row">           
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary" [disabled]='LSchoolForm.invalid'>Submit</button>
-                <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
-                <div>Angular Generated Form Model : {{LSchoolForm.value | json}}</div>
+                               
+            </div>
+        </div>
+    </div>
+    <div class="container wrapper">
+        <div class="row">
+
+            <!-- Bp table -->
+            <div class="col-md-12">
+                <div class="inner">
+                    <h3>Students Detail</h3>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Father Name</th>
+                                <th scope="col">Registration</th>
+                                <th scope="col">IsLeft</th>
+                            </tr>
+                        </thead>
+                        <tbody formArrayName="LSCHOOLDTLs">
+                            <tr *ngFor="let X of LSchoolForm['controls'].LSCHOOLDTLs['controls']; let i=index"
+                                 [formGroupName]="i" class="LSCHOOLDTLs">
+                                    <th scope="row">{{i+1}}</th>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="text" readonly formControlName="EMP_NAME" class="form-control">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="text" readonly formControlName="EMP_F_NAME" class="form-control">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="text" readonly formControlName="EMP_ID" class="form-control">
+                                        </div>
+                                    </td>   
+                                    <td> 
+                                         <mat-checkbox formControlName="isLeft"></mat-checkbox>                                             <!-- <input type="checkbox"  formControlName="isLeft" >                                         -->
+                                    </td>                               
+                            </tr>                            
+                        </tbody>
+                        <!-- <tbody>
+                            <tr *ngFor="let st of currentClStudentList; let i=index">                                
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{st.EMP_NAME}}</td>
+                                <td>{{st.EMP_F_NAME}}</td>
+                                <td>{{st.EMP_ID}}</td>
+                            </tr>                           
+                        </tbody> -->
+                    </table>
+                    <div>Angular Generated Form Model : {{LSchoolForm.value | json}}</div>
+                    <div *ngIf='show'>                        
+                        <button type="button" (click)="onSave()" 
+                        
+                        class="btn btn-success btn-sm move-right">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <router-outlet></router-outlet>
             </div>
         </div>
     </div>
