@@ -84,7 +84,9 @@
                                         </div>
                                     </td>   
                                     <td> 
-                                         <mat-checkbox formControlName="isLeft"></mat-checkbox>                                             <!-- <input type="checkbox"  formControlName="isLeft" >                                         -->
+                                         <mat-checkbox formControlName="isLeft"
+                                         #checkboxes (click)="changeCheck()"                                        
+                                         ></mat-checkbox>                                             <!-- <input type="checkbox"  formControlName="isLeft" >                                         -->
                                     </td>                               
                             </tr>                            
                         </tbody>
@@ -100,7 +102,7 @@
                     <div>Angular Generated Form Model : {{LSchoolForm.value | json}}</div>
                     <div *ngIf='show'>                        
                         <button type="button" (click)="onSave()" 
-                        
+                        [disabled]="disabledButton"
                         class="btn btn-success btn-sm move-right">Save</button>
                     </div>
                 </div>

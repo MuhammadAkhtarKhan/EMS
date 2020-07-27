@@ -30,10 +30,8 @@ import { EditExamComponent } from './exam/edit-exam.component';
 import { ExamListComponent } from './exam/exam-list.component';
 import { EmpinfoComponent } from './empinfo/empinfo.component';
 import { TeacherinfoComponent } from './teacherinfo/teacherinfo.component';
-import { TotalmarkdtlComponent } from './totalmarkdtl/totalmarkdtl.component';
 import { EditTotalmarksComponent } from './totalmarks/edit-totalmarks.component';
 import { TotalmarksComponent } from './totalmarks/totalmarks.component';
-import { TotalMarkDetailResolver } from './shared/myTotalMarkDetailResolver';
 import { GroupsComponent } from './groups/groups.component';
 import { EditGroupsComponent } from './groups/edit-groups.component';
 import { FeecollectComponent } from './feecollect/feecollect.component';
@@ -84,8 +82,7 @@ const routes: Routes = [
     { path: 'emp/:id', component: EditExamComponent, canActivate:[AuthGuard] },
     { path: 'teachinfo', component: TeacherinfoComponent, canActivate:[AuthGuard] },
     { path: 'marktotal', component: TotalmarksComponent, canActivate:[AuthGuard] },
-    { path: 'marktotal/:id', component: EditTotalmarksComponent, canActivate:[AuthGuard] },
-    { path: 'totalmarkdtl', component: TotalmarkdtlComponent, canActivate:[AuthGuard] },
+    { path: 'marktotal/:id', component: EditTotalmarksComponent, canActivate:[AuthGuard] },    
     { path: 'totalmarkdtl/:id', component: EditTotalmarksComponent, canActivate:[AuthGuard] },
     { path: 'group', component: GroupsComponent, canActivate:[AuthGuard] },
     { path: 'group/:id', component: EditGroupsComponent, canActivate:[AuthGuard] },

@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Marks } from '../models/marks';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { MarksDtl } from '../models/marksdtl';
+import { MarksDtl1 } from '../models/marksdtl1';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +44,21 @@ export class MarksService {
 
   // GET
   GetMarkss(): Observable<Marks> {
-    return this.http.get<Marks>(this.baseurl + '/marks')
+    return this.http.get<Marks>(this.baseurl + '/marksmst')
+    .pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    )
+  }
+  GetMarksdtl(): Observable<any> {
+    return this.http.get<MarksDtl>(this.baseurl + '/marksdtl')
+    .pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    )
+  }
+  GetMarksdtl1(): Observable<MarksDtl1> {
+    return this.http.get<MarksDtl1>(this.baseurl + '/marksdtl1')
     .pipe(
       retry(1),
       catchError(this.errorHandl)

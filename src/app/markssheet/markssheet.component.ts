@@ -16,6 +16,11 @@ export class MarkssheetComponent implements OnInit {
   ClassesList: any = [];
   ExamsList: any=[];
   MarkssheetList:any=[];
+  cl_trnno: any;
+  exam_trnno: any;
+  grp_trnno: any;
+  private _mdt: any;
+  message: string;
 
   constructor(
     public groupService: GroupService,
@@ -34,6 +39,47 @@ export class MarkssheetComponent implements OnInit {
     GRPMST_TRNNO: [''],
     EM_TRNNO: ['']
   })
+  classSelectionChange($event){    
+    this.cl_trnno=$event.source.value;    
+    this.findDate();
+  }
+  examTypeSelectionChange($event){    
+   this.exam_trnno= $event.source.value;
+   this.findDate();  
+  }
+  groupSelectionChange($event){    
+    this.grp_trnno= $event.source.value;
+   this.findDate();      
+  }
+  dateSelectionChange($event){
+    this._mdt= $event.source.value;
+    this.message='';
+  }
+  findDate() {
+    if (this.cl_trnno > 0 && this.exam_trnno > 0 && this.grp_trnno > 0) {
+      
+      var data = this.MarkssheetList.filter(x => x.CLASS_TRNNO == this.cl_trnno && x.EXAM_TRNNO == this.exam_trnno && x.GRPMST_TRNNO == this.grp_trnno);
+      if(data.length>0){
+        console.log(data);
+        this.MarkssheetList = data;
+        this.message="Please select the date Now"
+      }else{
+        this.message="There is no such Group. Please change the group OR Create a new group"
+        this.loadMarksSheet();
+      }
+     
+    } else if (this.cl_trnno > 0 && this.exam_trnno > 0) {
+      var data = this.MarkssheetList.filter(x => x.CLASS_TRNNO == this.cl_trnno && x.EXAM_TRNNO == this.exam_trnno);
+      console.log(data);
+
+    } else if (this.cl_trnno > 0) {
+      var data = this.MarkssheetList.filter(x => x.CLASS_TRNNO == this.cl_trnno);
+      console.log(data);
+    }
+    else {
+      this.message="Please select the fields"
+    }
+  }
 
   ngOnInit(): void {
     this.loadGroups();

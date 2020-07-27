@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ClassesService } from '../shared/classes.service';
 import { GroupService } from '../shared/group.service';
@@ -19,6 +19,9 @@ export class LschoolComponent implements OnInit {
   currentClStudentList: any = [];
   show: boolean =false;
   dataSource: any;
+  disabledButton: boolean = false;
+  @ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
+
   constructor(
     private fb: FormBuilder,
     private classService: ClassesService,
@@ -59,6 +62,17 @@ export class LschoolComponent implements OnInit {
   ngOnInit(): void {
     this.loadClasses();
     this.loadGroups();
+  }
+  
+  changeCheck(){
+    let flag= true;
+    this.checkboxes.forEach((element) => { // loop all checkboxes to find checked boxes
+     if(element.nativeElement.checked){
+       flag=false // if atleast one checkbox checked, put the flag flase
+     }
+   });
+
+   this.disabledButton = flag;
   }
   classSelectionChange($event){
 console.log($event.value);

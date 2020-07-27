@@ -77,7 +77,7 @@ import { FeeTypeService } from './shared/feetype.service';
 import { LeaveTypeService } from './shared/leavetype.service';
 import { SubjectService } from './shared/subject.service';
 import { TotalmarksComponent, UniquePipe } from './totalmarks/totalmarks.component';
-import { TotalmarkdtlComponent } from './totalmarkdtl/totalmarkdtl.component';
+
 import { TotalmarksListComponent } from './totalmarks/totalmarks-list.component';
 import { EditTotalmarksComponent } from './totalmarks/edit-totalmarks.component';
 import { TotalMarkDetailResolver } from './shared/myTotalMarkDetailResolver';
@@ -149,8 +149,7 @@ import { MatButtonModule } from '@angular/material/button';
     TeacherinfoComponent,
     MarkssheetComponent,
     TotalmarksComponent,
-    UniquePipe,
-    TotalmarkdtlComponent,
+    UniquePipe,    
     TotalmarksListComponent,
     EditTotalmarksComponent,
     GroupsComponent,
