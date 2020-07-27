@@ -46,6 +46,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { NavigationpageComponent } from './navigationpage/navigationpage.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MarkssheetComponent } from './markssheet/markssheet.component';
 
 
 const routes: Routes = [
@@ -95,7 +96,8 @@ const routes: Routes = [
     { path: 'promotion', component: PromotionComponent, canActivate:[AuthGuard] },
     { path: 'lschool', component: LschoolComponent, canActivate:[AuthGuard] },
     { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
-    { path: 'login', component: LoginComponent},   
+    { path: 'markssheet', component: MarkssheetComponent, canActivate:[AuthGuard]},
+    { path: 'login', component: LoginComponent},      
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent },
 ];
