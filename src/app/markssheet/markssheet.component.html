@@ -12,18 +12,7 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-            </div>
-            <div class="col-sm-6">
-                <mat-form-field>
-                    <mat-label>Date </mat-label>
-                    <mat-select formControlName='MDT' (selectionChange)='dateSelectionChange($event)'>
-                        <mat-option>--</mat-option>
-                        <mat-option *ngFor="let mrk of MarkssheetList" [value]="mrk.TRNNO">
-                            {{mrk.MDT}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
+            </div>           
             <div class="col-sm-6">
                 <mat-form-field>
                     <mat-label>Group </mat-label>
@@ -42,6 +31,17 @@
                         <mat-option>--</mat-option>
                         <mat-option *ngFor="let ex of ExamsList" [value]="ex.TRNNO">
                             {{ex.ETYPE}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Date </mat-label>
+                    <mat-select formControlName='MDT' (selectionChange)='dateSelectionChange($event)'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let mrk of MarkssheetList" [value]="mrk.TRNNO">
+                            {{mrk.MDT | date:'shortDate'}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
