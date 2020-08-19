@@ -133,14 +133,7 @@ export class EditTotalmarksComponent implements OnInit {
   displayedColumns: string[] = ['SR', 'SNAME', 'SCODE', 'TOTMARKS'];
   dataSource;
   tableForm: FormGroup;
-  // isDataAvailable:boolean = false;
-  // getData(){
-  //   return this.tmarkdtlService.GetTotalMarksDtls(this.id).then(event => {
-  //     this.ev = event;
-  //     console.log(event); // Has a value
-  //     console.log(this.ev); // Has a value
-  // });
-  // }
+ 
 
   ngOnInit(): void {
     console.log("ng OnInit() started");

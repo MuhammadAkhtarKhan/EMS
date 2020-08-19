@@ -1,7 +1,7 @@
 <form [formGroup]='marksForm'>
     <div class="container">
         <h2>Marks Sheet:</h2>
-        <div class="row">            
+        <div class="row">
             <div class="col-sm-6">
                 <mat-form-field>
                     <mat-label>Class </mat-label>
@@ -12,7 +12,7 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-            </div>           
+            </div>
             <div class="col-sm-6">
                 <mat-form-field>
                     <mat-label>Group </mat-label>
@@ -27,7 +27,7 @@
             <div class="col-sm-6">
                 <mat-form-field>
                     <mat-label>Exam Type </mat-label>
-                    <mat-select formControlName='EXAM_TRNNO'  (selectionChange)='examTypeSelectionChange($event)'>
+                    <mat-select formControlName='EXAM_TRNNO' (selectionChange)='examTypeSelectionChange($event)'>
                         <mat-option>--</mat-option>
                         <mat-option *ngFor="let ex of ExamsList" [value]="ex.TRNNO">
                             {{ex.ETYPE}}
@@ -40,12 +40,243 @@
                     <mat-label>Date </mat-label>
                     <mat-select formControlName='MDT' (selectionChange)='dateSelectionChange($event)'>
                         <mat-option>--</mat-option>
-                        <mat-option *ngFor="let mrk of MarkssheetList" [value]="mrk.TRNNO">
+                        <mat-option *ngFor="let mrk of MarkssheetList" [value]="mrk.MDT">
                             {{mrk.MDT | date:'shortDate'}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
+            <div class="col-sm-6">
+                <mat-form-field>
+                    <mat-label>Class Teacher </mat-label>
+                    <mat-select formControlName='EM_TRNNO'>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let tech of TeacherList" [value]="tech.TRNNO">
+                            {{tech.EMP_NAME}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <button (click)="onPopulate()" class="btn btn-primary" [disabled]='marksForm.invalid'>Populate</button>
+            </div>
+            <hr>
+            <div class="container">
+                <h3>Students Detail</h3>
+                <div class="row">
+                    <div class="col-1 font-weight-bold text-center">#</div>
+                    <div class="col-3 font-weight-bold text-center">Student Name</div>
+                    <div class="col-3 font-weight-bold text-center">Father Name</div>
+                    <div class="col-3 font-weight-bold text-center">Registration</div>
+                    <div class="col-1 font-weight-bold text-center">Code</div>
+                    <div class="col-1 font-weight-bold text-center"> Detail</div>
+                </div>
+            </div>
+            <div formArrayName="MARKSDTLs">
+                <div *ngFor="let X of marksForm['controls'].MARKSDTLs['controls']; let i=index" [formGroupName]="i"
+                    class="MARKSDTLs">
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-1"><input class="form-control" type="text" readonly value="{{i+1}}">
+                            </div>
+                            <div class="col-3"><input class="form-control" type="text" readonly
+                                    formControlName="EMP_NAME">
+                            </div>
+                            <div class="col-3"><input class="form-control" type="text" readonly
+                                    formControlName="EMP_F_NAME">
+                            </div>
+                            <div class="col-3"><input class="form-control" type="text" readonly
+                                    formControlName="EMP_ID">
+                            </div>
+                            <div class="col-1"><input class="form-control" type="text" readonly
+                                    formControlName="EM_TRNNO">
+                            </div>
+                            <div class="col-1">
+                                <button (click)="editMarks(X.controls.MARKSDTL1,i); X.clicked=true" [disabled]="X.clicked" mat-icon-button title="edit marks">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="container wrapper">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="inner">
+                                    <!-- <h3>{{_empName}}'s Marks Detail</h3> -->
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <!-- <th scope="col"></th>
+                                                <th scope="col">Subject Name</th>
+                                                <th scope="col">Subject Code</th>
+                                                <th scope="col">Total Marks</th>
+                                                <th scope="col">Obtained Marks</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody formArrayName="MARKSDTL1">
+                                            <tr *ngFor="let y of X['controls'].MARKSDTL1['controls']; let j=index; "
+                                                [formGroupName]="j" class="MARKSDTL1">
+                                                <th scope="row">{{j+1}}</th>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input type="text" readonly
+                                                            formControlName="SNAME"
+                                                            class="form-control">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input type="text" readonly
+                                                            formControlName="SCODE"
+                                                            class="form-control">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input type="text" readonly
+                                                            formControlName="TOTMARKS"
+                                                            class="form-control">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input type="text" shiftCurser
+                                                            formControlName="GMARKS"
+                                                            class="form-control">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="container wrapper" *ngIf="showDetail">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="inner">
+                            <h3>Students Detail</h3>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Student Name</th>
+                                        <th scope="col">Father Name</th>
+                                        <th scope="col">Registration</th>
+                                        <th scope="col">Code</th>
+                                        <th scope="col">Edit</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody formArrayName="MARKSDTLs">
+                                    <tr *ngFor="let X of marksForm['controls'].MARKSDTLs['controls']; let i=index"
+                                        [formGroupName]="i" class="MARKSDTLs">
+                                        <th scope="row">
+                                            {{i+1}}
+                                        </th>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" readonly formControlName="EMP_NAME"
+                                                    class="form-control">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" readonly formControlName="EMP_F_NAME"
+                                                    class="form-control">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" readonly formControlName="EMP_ID"
+                                                    class="form-control">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" readonly formControlName="EM_TRNNO"
+                                                    class="form-control">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <button (click)="editMarks(X.controls,i)" mat-icon-button title="edit marks">
+                                                    <mat-icon>edit</mat-icon>
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <div class="container wrapper" *ngIf="showMarks">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="inner">
+                                                        <h3>{{_empName}}'s Marks Detail</h3>
+                                                        <table class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">#</th>
+                                                                    <th scope="col">Subject Name</th>
+                                                                    <th scope="col">Subject Code</th>
+                                                                    <th scope="col">Total Marks</th>
+                                                                    <th scope="col">Obtained Marks</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody formArrayName="MARKSDTL1">
+                                                                <tr *ngFor="let y of X['controls'].MARKSDTL1['controls']; let j=index"
+                                                                    [formGroupName]="j" class="MARKSDTL1">
+                                                                    <th scope="row">{{j+1}}</th>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <input type="text" readonly
+                                                                                formControlName="SNAME"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <input type="text" readonly
+                                                                                formControlName="SCODE"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <input type="text" readonly
+                                                                                formControlName="TOTMARKS"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <input type="text" shiftCurser
+                                                                                formControlName="GMARKS"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
         </div>
+
+        <div class="col-sm-6">
+            <button (click)="OnSubmitForm()" class="btn btn-primary" [disabled]='marksForm.invalid'>Save Data</button>
+        </div>
+        <div>Angular Generated Form Model : {{marksForm.value | json}}</div>
     </div>
 </form>

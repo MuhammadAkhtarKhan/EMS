@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Student } from '../models/student';
-import { Promotion } from '../models/promotion';
+import { Teacher } from '../models/teacher';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class StudentService {
+export class TeacherService {
 
   // Base url
   baseurl = 'http://localhost:53084/api';
@@ -24,8 +23,8 @@ export class StudentService {
   };
 
   // POST
-  CreateStudent(data): Observable<any> {
-    return this.http.post<Promotion>(this.baseurl + '/student', JSON.stringify(data), this.httpOptions)
+  CreateTeacher(data): Observable<any> {
+    return this.http.post<Teacher>(this.baseurl + '/teachers', JSON.stringify(data), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -33,8 +32,8 @@ export class StudentService {
   }
 
   // GET
-  GetStudent(id): Observable<Student> {
-    return this.http.get<Student>(this.baseurl + '/student/' + id)
+  GetTeacher(id): Observable<Teacher> {
+    return this.http.get<Teacher>(this.baseurl + '/teachers/' + id)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -42,8 +41,8 @@ export class StudentService {
   }
 
   // GET
-  GetAllStudents(): Observable<Student> {
-    return this.http.get<Student>(this.baseurl + '/student')
+  GetAllTeachers(): Observable<Teacher> {
+    return this.http.get<Teacher>(this.baseurl + '/teachers')
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -51,8 +50,8 @@ export class StudentService {
   }
 
   // PUT
-  UpdateStudent(id, data): Observable<Student> {
-    return this.http.put<Student>(this.baseurl + '/student/' + id, JSON.stringify(data), this.httpOptions)
+  UpdateTeacher(id, data): Observable<Teacher> {
+    return this.http.put<Teacher>(this.baseurl + '/teacher/' + id, JSON.stringify(data), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -60,18 +59,14 @@ export class StudentService {
   }
 
   // DELETE
-  deleteStudent(id) {
-    return this.http.delete<Student>(this.baseurl + '/bp/' + id, this.httpOptions)
+  deleteTeacher(id) {
+    return this.http.delete<Teacher>(this.baseurl + '/teacher/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
     );
   }
-  // deleteStudent(id: number): Observable<any> {
-  //   return this.http.delete(`${this.baseurl}/${id}`, { responseType: 'text' });
-  // }
-
-  // Error handling
+ 
   errorHandl(error) {
      let errorMessage = '';
      if(error.error instanceof ErrorEvent) {

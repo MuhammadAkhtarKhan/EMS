@@ -106,6 +106,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ShiftCurserDirective } from './shared/directives/shift-curser.directive';
 
 
 
@@ -168,6 +169,7 @@ import { MatButtonModule } from '@angular/material/button';
     LschoolComponent,
     LoginComponent,
     DashboardComponent,
+    ShiftCurserDirective,
     
   ],
   imports: [    
