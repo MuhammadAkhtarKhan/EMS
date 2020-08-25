@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
           if (this.authService.redirectUrl) {
             this.router.navigate([this.authService.redirectUrl]);
           } else {
-            this.router.navigate(['/navigation']);
+            this.router.navigate(['/dashboard']);
           }        
         },   (error: AppResponse) => {
              if(error.status === 400)

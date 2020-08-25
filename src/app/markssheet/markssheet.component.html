@@ -100,19 +100,20 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="container wrapper">
+
+                    <div class="container wrapper" *ngIf="(X.controls.MARKSDTL1.length) !=0">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="inner">
-                                    <!-- <h3>{{_empName}}'s Marks Detail</h3> -->
+                                    <h3>{{_empName}}'s Marks Detail</h3>
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <!-- <th scope="col"></th>
+                                                <th scope="col"></th>
                                                 <th scope="col">Subject Name</th>
                                                 <th scope="col">Subject Code</th>
                                                 <th scope="col">Total Marks</th>
-                                                <th scope="col">Obtained Marks</th> -->
+                                                <th scope="col">Obtained Marks</th>
                                             </tr>
                                         </thead>
                                         <tbody formArrayName="MARKSDTL1">

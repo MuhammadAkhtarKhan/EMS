@@ -1,7 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 import { ChartsModule } from 'ng2-charts';
 
@@ -14,17 +22,35 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 import {CdkStepperModule,STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
 import { AppRoutingModule } from './app-routing.module';
+import { EmpinfoModule } from './empinfo/empinfo.module';
+import { MaterialModule } from './material/material.module';
 
-import { AppComponent } from './app.component';
-import {BpComponent} from '../app/bp/bp.component';
+
 import {BpService} from '../app/shared/bp.service';
 import { CastService } from './shared/cast.service';
 import { ClassesService } from './shared/classes.service';
 import { CompanyService } from './shared/company.service';
 import { DeptService } from './shared/dept.service';
 import { ExamService } from './shared/exam.service';
+import { GroupService } from './shared/group.service';
+import { SecdtlService } from './shared/secdtl.service';
+import { MarksService } from './shared/marks.service';
+import { EduService } from './shared/edu.service';
+import { EmService } from './shared/em.service';
+import { FeeTypeService } from './shared/feetype.service';
+import { LeaveTypeService } from './shared/leavetype.service';
+import { SubjectService } from './shared/subject.service';
+import { DateService } from './shared/date.service';
+import { AuthService } from './shared/auth.service';
 
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AuthGuard } from './shared/auth.guard';
+import { TokenizedInterceptor } from './Tokenized-Interceptor';
+
+import { ListFilterPipe } from './groupchange/list-filter.pipe';
+
+
+import { AppComponent } from './app.component';
+import {BpComponent} from '../app/bp/bp.component';
 import { BpListComponent } from './bp/bp-list.component';
 import { EditBpComponent } from './bp/edit-bp.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -56,32 +82,12 @@ import { EditLeavetypeComponent } from './leavetype/edit-leavetype.component';
 import { LeavetypeComponent } from './leavetype/leavetype.component';
 import { LeavetypeListComponent } from './leavetype/leavetype-list.component';
 import { NavigationpageComponent } from './navigationpage/navigationpage.component';
- 
 
-import { MaterialModule } from './material/material.module';
-
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from '@angular/cdk/layout';
-
-import { EmpinfoComponent } from './empinfo/empinfo.component';
-import { GroupService } from './shared/group.service';
-import { SecdtlService } from './shared/secdtl.service';
 import { TeacherinfoComponent, MY_FORMATS } from './teacherinfo/teacherinfo.component';
-import { DateService } from './shared/date.service';
 import { MarkssheetComponent } from './markssheet/markssheet.component';
-import { MarksService } from './shared/marks.service';
-import { EduService } from './shared/edu.service';
-import { EmService } from './shared/em.service';
-import { FeeTypeService } from './shared/feetype.service';
-import { LeaveTypeService } from './shared/leavetype.service';
-import { SubjectService } from './shared/subject.service';
 import { TotalmarksComponent, UniquePipe } from './totalmarks/totalmarks.component';
-
 import { TotalmarksListComponent } from './totalmarks/totalmarks-list.component';
 import { EditTotalmarksComponent } from './totalmarks/edit-totalmarks.component';
-import { TotalMarkDetailResolver } from './shared/myTotalMarkDetailResolver';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { GroupsComponent } from './groups/groups.component';
 import { EditGroupsComponent } from './groups/edit-groups.component';
 import { FeecollectComponent } from './feecollect/feecollect.component';
@@ -93,20 +99,14 @@ import { EditSectionsComponent } from './sections/edit-sections.component';
 import { GroupchangeComponent } from './groupchange/groupchange.component';
 import { SearchComponent } from './search/search.component';
 import { DetailsComponent } from './details/details.component';
-import { ListFilterPipe } from './groupchange/list-filter.pipe';
+
 import { PromotionComponent } from './promotion/promotion.component';
 import { LschoolComponent } from './lschool/lschool.component';
-import { AuthGuard } from './shared/auth.guard';
-import { AuthService } from './shared/auth.service';
 import { LoginComponent } from './login/login.component';
-import { TokenizedInterceptor } from './Tokenized-Interceptor';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { ShiftCurserDirective } from './shared/directives/shift-curser.directive';
+
 
 
 
@@ -146,7 +146,7 @@ import { ShiftCurserDirective } from './shared/directives/shift-curser.directive
     LeavetypeComponent,
     LeavetypeListComponent,
     NavigationpageComponent,
-    EmpinfoComponent,
+  
     TeacherinfoComponent,
     MarkssheetComponent,
     TotalmarksComponent,
@@ -189,7 +189,8 @@ import { ShiftCurserDirective } from './shared/directives/shift-curser.directive
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    ChartsModule   
+    ChartsModule,
+    EmpinfoModule   
   ],
   providers: [
     UniquePipe,    

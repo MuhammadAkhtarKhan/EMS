@@ -203,7 +203,7 @@ export class MarkssheetComponent implements OnInit {
     //       }
     this._index=index;
     console.log(control);
-    //let contrl=control.MARKSDTL1;
+    
     console.log(index);
     $(index).hide();
 
@@ -221,19 +221,13 @@ export class MarkssheetComponent implements OnInit {
     })
     this.showMarks = true;
   }
-  myfunction() {
-    $("button").click(function () {
-      $("p").hide();
-    });
-  }
-  trackByStudentDtl1(index:number, studentmarks:any):void{
- this.tracked_sr=studentmarks.value.SR;
-  }
+ 
 
   onPopulate() {
    
     if (this.currentClStudentList.length == 0) {
-      console.log(this.marksForm);
+     const contr= this.marksForm.get('MARKSDTLs');
+      console.log(contr);
       this.studentService.CreateStudent(this.marksForm.value).subscribe((data: {}) => {
         this.currentClStudentList = data;
         if (data != null) {

@@ -51,7 +51,7 @@ import { MarkssheetComponent } from './markssheet/markssheet.component';
 
 const routes: Routes = [
    
-  //{ path: 'navigation', component: NavigationpageComponent, canActivate:[AuthGuard]}, 
+  // { path: '', component: NavigationpageComponent, canActivate:[AuthGuard]}, 
     { path: 'bp', component: BpComponent, canActivate:[AuthGuard] },
     { path: 'bp/:id', component: EditBpComponent, canActivate:[AuthGuard] },
     { path: 'bp', component: BpListComponent, canActivate:[AuthGuard] },
