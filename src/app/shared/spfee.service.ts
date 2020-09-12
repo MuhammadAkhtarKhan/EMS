@@ -24,6 +24,13 @@ export class SpFeeService {
   };
 
   // POST
+  GetSpFee(data): Observable<SpFee> {
+    return this.http.post<SpFee>(this.baseurl + '/getspfee', JSON.stringify(data), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
   CreateSpFee(data): Observable<SpFee> {
     return this.http.post<SpFee>(this.baseurl + '/spfee', JSON.stringify(data), this.httpOptions)
     .pipe(
@@ -33,7 +40,7 @@ export class SpFeeService {
   }
 
   // GET
-  GetSpFee(id): Observable<SpFeeUpdate> {
+  GetSpFeeById(id): Observable<SpFeeUpdate> {
     return this.http.get<SpFeeUpdate>(this.baseurl + '/spfee/' + id)
     .pipe(
       retry(1),

@@ -30,6 +30,14 @@ export class feecollectService {
       catchError(this.errorHandl)
     );
   }
+  //Post
+  GetCurrentFee(data): Observable<any> {
+    return this.http.post<any>(this.baseurl + '/currentfee', JSON.stringify(data), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
 
   // GET
   GetFeeCollect(id): Observable<FeeCollect> {

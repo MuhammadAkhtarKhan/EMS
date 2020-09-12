@@ -3,6 +3,7 @@ import { ClassesService } from '../shared/classes.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { SpFeeService } from '../shared/spfee.service';
+import { StudentService } from '../shared/student.service';
 
 @Component({
   selector: 'app-spfee',
@@ -12,9 +13,11 @@ import { SpFeeService } from '../shared/spfee.service';
 export class SpfeeComponent implements OnInit {
   ClassesList: any = [];
   SelectedEmpList: any=[];
+  currentClStudentList: any = [];
   constructor(
     public classService: ClassesService,
     public spFeeService: SpFeeService,
+    private studentService: StudentService,
     private ngZone: NgZone,
     private router: Router,
     private fb: FormBuilder
@@ -23,6 +26,7 @@ export class SpfeeComponent implements OnInit {
   public spFeeForm = this.fb.group({
     TRNNO: [0],
     CLASS_TRNNO: [, [Validators.required]],
+    GRPMST_TRNNO: [0.0],
     SPDATE: [, [Validators.required]],
     'SPFEEDTLs': this.fb.array([
       this._addSpFee()
@@ -31,10 +35,11 @@ export class SpfeeComponent implements OnInit {
   _addSpFee() {
     return this.fb.group({
       'TRNNO': [0],
+      'EM_TRNNO':[],
       'EMP_NAME': [],
-      'EMP_F_NAME': [],
-      'SPFEE': [],
-      'NPFEE': [],
+      'EMP_F_NAME': [],      
+      'SPFEE': [ , [Validators.required]],
+      'NPFEE': [ , Validators.required],
     })
   }
   addNewSpFee() {
@@ -54,9 +59,10 @@ export class SpfeeComponent implements OnInit {
   classSelectionChange($event){
     const cl_id = $event.value;
     console.log(cl_id);
-    this.findEmpByClId(cl_id);
-    const control = this.spFeeForm.get('SPFEEDTLs') as FormArray;
-    control.patchValue([{ 'EMP_F_NAME':"",'SPFEE':""  }]);
+    //this.findEmpByClId(cl_id);
+    this.onClassSelection();
+    // const control = this.spFeeForm.get('SPFEEDTLs') as FormArray;
+    // control.patchValue([{ 'EMP_F_NAME':"",'SPFEE':""  }]);
   }
   findEmpByClId(cl_id: number){
     this.spFeeService.GetSpFee(cl_id).subscribe((data:{})=>{
@@ -66,11 +72,16 @@ export class SpfeeComponent implements OnInit {
   }
   nameSelectionChange($event){
     const trn=$event.value
+
     console.log(trn);
     var data = this.SelectedEmpList.filter(x => x.TRNNO == trn);
     const control = this.spFeeForm.get('SPFEEDTLs') as FormArray;
-    control.patchValue([{ 'EMP_F_NAME':data[0].EMP_F_NAME,'SPFEE':data[0].SPFEE  }]);
+    control.patchValue([{ 'EMP_F_NAME':data[0].EMP_F_NAME,'EMP_NAME':data[0].EMP_NAME, 'EM_TRNNO':data[0].TRNNO  }]);
     console.log(this.spFeeForm);
+    this.spFeeService.GetSpFee(this.spFeeForm.value).subscribe((data :{})=>{
+      console.log(data)
+     control.patchValue([{'NPFEE':data}])
+    })
     //this.spFeeForm.controls.TRNNO.patchValue(data[0].TRNNO)
   }
   ngOnInit(): void {
@@ -81,5 +92,15 @@ export class SpfeeComponent implements OnInit {
       this.ClassesList = data;
     })
   }
-  onSubmitClassFee(){}
+  onClassSelection(){
+    this.studentService.CreateStudent(this.spFeeForm.value).subscribe((data: {}) => {
+      this.SelectedEmpList=data;     
+    })
+  }
+  onSubmitClassFee() {
+    this.spFeeService.CreateSpFee(this.spFeeForm.value).subscribe((data: {}) => {      
+      this.ngZone.run(() => this.router.navigateByUrl('/spfee'))
+      
+    })
+  }
 }

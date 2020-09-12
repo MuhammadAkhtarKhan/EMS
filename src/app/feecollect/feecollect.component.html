@@ -2,13 +2,14 @@
     <mat-tab label="Generate Fee Vouchers">
         <form [formGroup]="feeCollectForm" (ngSubmit)='onSubmitFeeCollect()'>
             <div class="container">
-                <h2>Fee Collection:</h2>                
+                <h2>Fee Collection:</h2>
                 <div>
                     <div class="row">
                         <div class="col-sm-6">
                             <mat-form-field>
                                 <mat-label>Date</mat-label>
-                                <input matInput [matDatepicker]='myDatePickerRDATE' disabled=true formControlName='RDATE'>
+                                <input matInput [matDatepicker]='myDatePickerRDATE' disabled=true
+                                    formControlName='RDATE'>
                                 <mat-datepicker-toggle matSuffix [for]='myDatePickerRDATE' disabled=false>
                                 </mat-datepicker-toggle>
                                 <mat-datepicker #myDatePickerRDATE disabled=false touchUi>
@@ -17,8 +18,32 @@
                         </div>
                         <div class="col-sm-6">
                             <mat-form-field>
+                                <mat-label>Name</mat-label>
+                                <mat-select formControlName="EM_TRNNO" (selectionChange)='nameSelectionChange($event)'>
+                                    <mat-option>--</mat-option>
+                                    <mat-option *ngFor="let st of StudentsList" [value]="st.TRNNO">
+                                        {{st.EMP_NAME}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <mat-label>Father Name</mat-label>
+                                <input matInput type="text" readonly formControlName="EMP_F_NAME">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <mat-label>Registration No</mat-label>
+                                <input matInput type="text" readonly formControlName="EMP_ID">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field>
                                 <mat-label>Due Date</mat-label>
-                                <input matInput [matDatepicker]='myDatePickerDDATE' disabled=true formControlName='DDATE'>
+                                <input matInput [matDatepicker]='myDatePickerDDATE' disabled=true
+                                    formControlName='DDATE'>
                                 <mat-datepicker-toggle matSuffix [for]='myDatePickerDDATE' disabled=false>
                                 </mat-datepicker-toggle>
                                 <mat-datepicker #myDatePickerDDATE disabled=false touchUi>
@@ -28,13 +53,21 @@
                         <div class="col-sm-6">
                             <mat-form-field>
                                 <mat-label>For Months</mat-label>
-                                <input matInput type="number" formControlName="FMONTH">
+                                <input matInput type="number" formControlName="FMONTH"
+                                    (input)="onMonthChange($event.target.value)">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-form-field>
+                                <mat-label>Fee</mat-label>
+                                <input readonly matInput type="number" formControlName="FEE">
                             </mat-form-field>
                         </div>
                         <div class="col-sm-6">
                             <mat-form-field>
                                 <mat-label>Last Date</mat-label>
-                                <input matInput [matDatepicker]='myDatePickerLDATE' disabled=true formControlName='LDATE'>
+                                <input matInput [matDatepicker]='myDatePickerLDATE' disabled=true
+                                    formControlName='LDATE'>
                                 <mat-datepicker-toggle matSuffix [for]='myDatePickerLDATE' disabled=false>
                                 </mat-datepicker-toggle>
                                 <mat-datepicker #myDatePickerLDATE disabled=false touchUi>
@@ -50,7 +83,7 @@
                         <div class="col-md-6">
                             <mat-form-field>
                                 <mat-label>Discount Type</mat-label>
-                                <mat-select formControlName="DISCOUNTTYPE" >
+                                <mat-select formControlName="DISCOUNTTYPE">
                                     <mat-option>--</mat-option>
                                     <mat-option *ngFor="let dis of DiscountTypeList" [value]="dis.id">
                                         {{dis.name}}
@@ -61,23 +94,23 @@
                         <div class="col-md-6">
                             <mat-form-field>
                                 <mat-label>Class</mat-label>
-                                <mat-select formControlName="CLASS_TRNNO" >
+                                <mat-select disabled formControlName="CLASS_TRNNO">
                                     <mat-option>--</mat-option>
                                     <mat-option *ngFor="let cl of ClassesList" [value]="cl.TRNNO">
                                         {{cl.CNAME}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
-                        </div>                        
+                        </div>
                     </div>
                     <div class="row">
                         <div>
                             <label id="lblMarginSet"></label>
                             <mat-radio-group name='ARRFLG' labelPosition='before' formControlName='ARRFLG'>
-                              <mat-radio-button value='1'> Arrears</mat-radio-button>
-                              <mat-radio-button value='0'> No Arrears</mat-radio-button>
+                                <mat-radio-button value='1'> Arrears</mat-radio-button>
+                                <mat-radio-button value='0'> No Arrears</mat-radio-button>
                             </mat-radio-group>
-                          </div>
+                        </div>
                     </div>
                 </div>
 
@@ -104,13 +137,14 @@
                                 <div class="col-md-4">
                                     <mat-form-field>
                                         <mat-label>Amount </mat-label>
-                                        <input matInput type="text" formControlName="AMT">
+                                        <input matInput type="text" formControlName="AMT"
+                                            (input)="onAmountChange(X ,ix)">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-2">
                                     <mat-form-field>
                                         <mat-label>Total Amount </mat-label>
-                                        <input matInput type="number">
+                                        <input matInput readonly  type="number" formControlName="TOTAMOUNT" (input)="onTotAmountChange()">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-2">
@@ -121,12 +155,29 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
+                </div>
+                <hr>
+                <div class="row" *ngIf='getTotamout()>0'>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <strong>
+                        <label for="totAmount">Total Amount :</label>
+                    </strong>
+                    </div>
+                    <div class="col-md-4">
+                        <strong>
+                            <label for="totAmount">{{getTotamout()}}</label>
+                        </strong>
+                        </div>
+                        <!-- <input type="text" class="form-control" readonly [value]="getTotamout()"></div> -->
+                   
                 </div>
                 <div class="row">
                     <div id="msg" *ngIf="feeCollectForm.invalid? message: ''">{{message}}</div>
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary" [disabled]='feeCollectForm.invalid'>Submit</button>
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]='feeCollectForm.invalid'>Submit</button>
                         <!-- <div>{{empForm.get('addresses').controls[i].ADDDESC.value}}</div> -->
                         <div>Angular Generated Form Model : {{feeCollectForm.value | json}}</div>
                     </div>

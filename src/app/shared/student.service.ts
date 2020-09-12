@@ -40,6 +40,13 @@ export class StudentService {
       catchError(this.errorHandl)
     )
   }
+  GetStudentClassByEmpId(id): Observable<any> {
+    return this.http.get<any>(this.baseurl + '/student-current-class/' + id)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    )
+  }
 
   // GET
   GetAllStudents(): Observable<Student> {

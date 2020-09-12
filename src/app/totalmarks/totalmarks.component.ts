@@ -105,10 +105,7 @@ export class TotalmarksComponent implements OnInit {
     })
   }
   addNewSuject(){
-    const control = <FormArray>this.addNewMarksForm.controls['MARKTOTALDTLs'];
-    //this._trnno = this.EmpList[this.EmpList.length - 1].TRNNO;
-    //control.setValue([{ 'TRNNO': this._trnno, 'SR': this._sr + 1, 'ADDDESC': 'p-516', 'ADDTYPE': 'T' }]);
-    //control.patchValue([{ 'SCODE':'' }]);
+    const control = <FormArray>this.addNewMarksForm.controls['MARKTOTALDTLs'];   
     control.insert(0,this._addNewSubject());
     //console.log(this.EmpList[this.EmpList.length - 1].TRNNO);
     console.log(this.addNewMarksForm.get('MARKTOTALDTLs').value);
@@ -122,12 +119,7 @@ export class TotalmarksComponent implements OnInit {
     const _sub_trnno=$event.value;    
     this.findScode(ix,_sub_trnno);
   }
-  findScode(ix ,_sub_trnno){
-    //const control = <FormArray>this.addNewMarksForm.controls['MARKTOTALDTLs'];
-   // this.addNewMarksForm.get(`MARKTOTALDTLs.${ix}.SCODE`).setValue(this._scode);
-    //<FormArray>this.addNewMarksForm.controls['MARKTOTALDTLs'].controls[ix].controls['SCODE'].setValue(ID);
-   //console.log(control.at(ix));
-    //console.log(control);
+  findScode(ix ,_sub_trnno){   
     const data = this.SubjectsList.filter(x => x.TRNNO==_sub_trnno);
     console.log(data[0].SCODE);
     const _scode=data[0].SCODE;
