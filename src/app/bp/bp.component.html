@@ -1,12 +1,11 @@
 <div *ngIf="showMsg">
     <p class="alert alert-success">
         <a href="#" (click)="CloseAlert()" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Note: </strong> Record Added Successfully!.
+        <strong>Note: </strong> Record {{actMessage}} Successfully!.
     </p>
 </div>
 <div class="container wrapper wrapper2">
     <div class="row">
-
         <!-- Form -->
         <div class="col-md-6">
             <h3>Add Blood Groups</h3>
@@ -14,28 +13,13 @@
                 <div class="form-group">
                     <label>Blood Group</label>
                     <input type="text" formControlName="bpname" class="form-control" maxlength="3">
-                </div>
-                <!-- <div class="form-group">
-                    <label>Blood Group Status</label>
-                    <input class="form-control" formControlName="status"  maxlength="1">
-                </div> -->
-                <!-- <div>
-                    <mat-form-field>
-                        <mat-label>Status </mat-label>
-                        <mat-select formControlName='status'>
-                            <mat-option>--</mat-option>
-                            <mat-option *ngFor="let cl of StatusTypeList" [value]="cl.status">
-                                {{cl.state}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div> -->
+                </div>               
                 <div>Angular Generated Form Model : {{bpForm.value | json}}</div>  
                 <button type="submit" class="btn btn-primary" [disabled]='bpForm.invalid'>Submit</button>
             </form>
         </div>        
         <div class="col-md-6">
-            <app-bp-list></app-bp-list>
+            <app-bp-list [BpsList]='_bgList' (showMessageEvent)="showMessage($event)" ></app-bp-list>
         </div>
     </div>
 </div>

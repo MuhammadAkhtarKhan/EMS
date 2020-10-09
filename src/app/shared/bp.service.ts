@@ -24,7 +24,7 @@ export class BpService {
 
   // POST
   CreateBp(data): Observable<Bp> {
-    return this.http.post<Bp>(this.baseurl + '/bp', JSON.stringify(data), this.httpOptions)
+    return this.http.post<Bp>(this.baseurl + '/bp', data, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
