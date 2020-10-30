@@ -47,14 +47,19 @@ import { LoginComponent } from './login/login.component';
 import { NavigationpageComponent } from './navigationpage/navigationpage.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MarkssheetComponent } from './markssheet/markssheet.component';
+import {BpModule} from './bp/bp.module';
+import{EmpinfoModule} from './empinfo/empinfo.module';
+
 
 
 const routes: Routes = [
    
   // { path: '', component: NavigationpageComponent, canActivate:[AuthGuard]}, 
-    { path: 'bp', component: BpComponent, canActivate:[AuthGuard] },
-    { path: 'bp/:id', component: EditBpComponent, canActivate:[AuthGuard] },
-    { path: 'bp', component: BpListComponent, canActivate:[AuthGuard] },
+    // { path: 'bp', component: BpComponent, canActivate:[AuthGuard] },
+    // { path: 'bp/:id', component: EditBpComponent, canActivate:[AuthGuard] },
+    // { path: 'bp', component: BpListComponent, canActivate:[AuthGuard] },
+    {path:'bp', loadChildren: './bp/bp.module#BpModule'},
+    { path: 'emp', loadChildren:'./empinfo/empinfo.module#EmpinfoModule'},
     { path: 'cast', component: CastComponent, canActivate:[AuthGuard] },
     { path: 'cast/:id', component: EditCastComponent, canActivate:[AuthGuard] },
     { path: 'cast', component: CastListComponent, canActivate:[AuthGuard] },
@@ -79,8 +84,8 @@ const routes: Routes = [
     { path: 'exam', component: ExamComponent, canActivate:[AuthGuard] },
     { path: 'exam/:id', component: EditExamComponent, canActivate:[AuthGuard] },
     { path: 'exam', component: ExamListComponent, canActivate:[AuthGuard] },
-    { path: 'emp', component: EmpinfoComponent, canActivate:[AuthGuard] },
-    { path: 'emp/:id', component: EditExamComponent, canActivate:[AuthGuard] },
+     
+    // { path: 'emp/:id', component: EditExamComponent, canActivate:[AuthGuard] },
     { path: 'teachinfo', component: TeacherinfoComponent, canActivate:[AuthGuard] },
     { path: 'marktotal', component: TotalmarksComponent, canActivate:[AuthGuard] },
     { path: 'marktotal/:id', component: EditTotalmarksComponent, canActivate:[AuthGuard] },    

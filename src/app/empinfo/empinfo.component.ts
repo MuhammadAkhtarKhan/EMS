@@ -152,7 +152,7 @@ export class EmpinfoComponent implements OnInit {
   _class: string = 'TWO'
   EMP_ID: string = this.ADIMNO + "-" + this._class + "-" + this._yearAdm;
   EMP_REG: string;
-  TRNNO: String;
+  TRNNO: string='';
 
 
   //declare id of class 
@@ -278,6 +278,7 @@ export class EmpinfoComponent implements OnInit {
    
   }
   public empForm = this.fb.group({
+    
     TRNNO: [this.TRNNO],
     EMP_ID: ['',{ disabled: true }],
     ADIMNO: ['', Validators.required],

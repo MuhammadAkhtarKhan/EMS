@@ -22,7 +22,7 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 import {CdkStepperModule,STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
 import { AppRoutingModule } from './app-routing.module';
-import { EmpinfoModule } from './empinfo/empinfo.module';
+// import { EmpinfoModule } from './empinfo/empinfo.module';
 import { MaterialModule } from './material/material.module';
 
 
@@ -50,9 +50,6 @@ import { ListFilterPipe } from './groupchange/list-filter.pipe';
 
 
 import { AppComponent } from './app.component';
-import {BpComponent} from '../app/bp/bp.component';
-import { BpListComponent } from './bp/bp-list.component';
-import { EditBpComponent } from './bp/edit-bp.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CastComponent } from './cast/cast.component';
 import { CastListComponent } from './cast/cast-list.component';
@@ -113,10 +110,7 @@ import { ShiftCurserDirective } from './shared/directives/shift-curser.directive
 
 @NgModule({
   declarations: [
-    AppComponent,
-    BpComponent,
-    BpListComponent,
-    EditBpComponent,
+    AppComponent,  
     PageNotFoundComponent,
     CastComponent,
     CastListComponent,
@@ -182,15 +176,14 @@ import { ShiftCurserDirective } from './shared/directives/shift-curser.directive
     FormsModule,
     MaterialModule,
     LayoutModule,
-    CdkStepperModule,
-    
+    CdkStepperModule,    
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
     ChartsModule,
-    EmpinfoModule   
+       
   ],
   providers: [
     UniquePipe,    
