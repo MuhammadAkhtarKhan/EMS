@@ -49,6 +49,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MarkssheetComponent } from './markssheet/markssheet.component';
 import {BpModule} from './bp/bp.module';
 import{EmpinfoModule} from './empinfo/empinfo.module';
+import{TeacherinfoModule} from './teacherinfo/teacherinfo.module'
 
 
 
@@ -86,7 +87,8 @@ const routes: Routes = [
     { path: 'exam', component: ExamListComponent, canActivate:[AuthGuard] },
      
     // { path: 'emp/:id', component: EditExamComponent, canActivate:[AuthGuard] },
-    { path: 'teachinfo', component: TeacherinfoComponent, canActivate:[AuthGuard] },
+    { path: 'teachinfo', loadChildren:() => import('./teacherinfo/teacherinfo.module').then(m => m.TeacherinfoModule) },
+    // { path: 'teachinfo', component: TeacherinfoComponent, canActivate:[AuthGuard] },
     { path: 'marktotal', component: TotalmarksComponent, canActivate:[AuthGuard] },
     { path: 'marktotal/:id', component: EditTotalmarksComponent, canActivate:[AuthGuard] },    
     { path: 'totalmarkdtl/:id', component: EditTotalmarksComponent, canActivate:[AuthGuard] },

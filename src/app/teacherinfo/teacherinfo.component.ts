@@ -113,7 +113,7 @@ export class TeacherinfoComponent implements OnInit {
   _class: string = 'TWO'
   EMP_ID: string = this.ADIMNO + "-" + this._class + "-" + this._yearAdm;
   EMP_REG: string;
-  TRNNO: String;
+  TRNNO: string='';
 
 
   //declare id of class 

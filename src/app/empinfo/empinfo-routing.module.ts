@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterModule, Routes } from '@angular/router';
 import { EmpinfoComponent } from './empinfo.component';
 import { AuthGuard } from '../shared/auth.guard';

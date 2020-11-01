@@ -80,7 +80,7 @@ import { LeavetypeComponent } from './leavetype/leavetype.component';
 import { LeavetypeListComponent } from './leavetype/leavetype-list.component';
 import { NavigationpageComponent } from './navigationpage/navigationpage.component';
 
-import { TeacherinfoComponent, MY_FORMATS } from './teacherinfo/teacherinfo.component';
+// import { TeacherinfoComponent, MY_FORMATS } from './teacherinfo/teacherinfo.component';
 import { MarkssheetComponent } from './markssheet/markssheet.component';
 import { TotalmarksComponent, UniquePipe } from './totalmarks/totalmarks.component';
 import { TotalmarksListComponent } from './totalmarks/totalmarks-list.component';
@@ -103,6 +103,18 @@ import { LoginComponent } from './login/login.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ShiftCurserDirective } from './shared/directives/shift-curser.directive';
+import { ClassfeeService } from './shared/classfee.service';
+import { ClFeedtlService } from './shared/clfeedtl.service';
+import { feecollectService } from './shared/feecollect.service';
+import { GroupChangeService } from './shared/grpchange.service';
+import { LSchoolService } from './shared/lschool.service';
+import { PromotionService } from './shared/promotion.service';
+import { SectionsService } from './shared/section.service';
+import { SpFeeService } from './shared/spfee.service';
+import { StudentService } from './shared/student.service';
+import { TeacherService } from './shared/teacher.service';
+import { TotalmarkService } from './shared/totalmark.service';
+import { TotalmarksdtlService } from './shared/totamarksdtl.service';
 
 
 
@@ -139,9 +151,7 @@ import { ShiftCurserDirective } from './shared/directives/shift-curser.directive
     EditLeavetypeComponent,
     LeavetypeComponent,
     LeavetypeListComponent,
-    NavigationpageComponent,
-  
-    TeacherinfoComponent,
+    NavigationpageComponent,   
     MarkssheetComponent,
     TotalmarksComponent,
     UniquePipe,    
@@ -204,6 +214,18 @@ import { ShiftCurserDirective } from './shared/directives/shift-curser.directive
     SubjectService,
     AuthGuard,
     AuthService,
+    ClassfeeService,
+    ClFeedtlService,
+    feecollectService,
+    GroupChangeService,
+    LSchoolService,
+    PromotionService,
+    SectionsService,
+    SpFeeService,
+    StudentService,
+    TeacherService,
+    TotalmarkService,
+    TotalmarksdtlService,
         
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},  
     {provide: HTTP_INTERCEPTORS, useClass: TokenizedInterceptor, multi: true},  
